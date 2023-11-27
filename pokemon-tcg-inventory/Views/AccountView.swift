@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct AccountView: View {
+    @Binding var user: User
+    @Binding var isDarkMode: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                Section(header: Text("Email/Username")) {
+                    Text(user.username)
+                }
+                
+                Section(header: Text("Display Name (feel free to change)")) {
+                    TextField("", text: $user.displayName)
+                }
+                
+                Section(header: Text("Preferences")){
+                    Toggle("Dark Mode", isOn: $isDarkMode)
+                }
+            }
+            .navigationTitle("Account")
+        }
     }
 }
 
 #Preview {
-    AccountView()
+    AccountView(user: .constant(sampleUser), isDarkMode: .constant(false))
 }

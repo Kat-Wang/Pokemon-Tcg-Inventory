@@ -9,10 +9,46 @@ import SwiftUI
 
 struct CardsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        MainCardFilter()
     }
 }
 
 #Preview {
     CardsView()
+}
+
+struct MainCardFilter: View {
+    var body: some View {
+        HStack {
+            Button {
+                
+            }
+            label : {
+                Text("Pokemon")
+                    .frame(width: 80, height: 20)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Color(hex: "#4484b2"))
+            
+            Button {
+                
+            } label : {
+                Text("Trainer")
+                    .frame(width: 80, height: 20)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Color(hex: "#4484b2"))
+            
+            Button {
+                
+            } label : {
+                Text("Energy")
+                    .frame(width: 80, height: 20)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Color(hex: "#4484b2"))
+
+
+        }
+    }
 }

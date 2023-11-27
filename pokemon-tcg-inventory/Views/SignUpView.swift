@@ -10,13 +10,15 @@ import FirebaseAuth
 
 struct SignUpView: View {
     
+    @State var confirmPassword = ""
+    @State var statusMsg = ""
+    
     @Binding var username: String
     @Binding var password: String
     @Binding var signError: Bool
     @Binding var signingUp: Bool
-    @State var confirmPassword = ""
-    @State var statusMsg = ""
-    
+    @Binding var isLoggedIn: Bool
+
     var body: some View {
         VStack {
             HStack {
@@ -56,6 +58,7 @@ struct SignUpView: View {
                             else {
                                 signingUp = false
                                 Auth.auth().signIn(withEmail: username, password: password)
+                                isLoggedIn = true
                             }
                         }
                     }
@@ -84,7 +87,7 @@ struct SignUpView: View {
 
 
 #Preview {
-    SignUpView(username: .constant("kate@gmail.com"), password: .constant("123123"), signError: .constant(true), signingUp: .constant(true))
+    SignUpView(username: .constant("kate@gmail.com"), password: .constant("123123"), signError: .constant(true), signingUp: .constant(true), isLoggedIn: .constant(false))
 }
 
 

@@ -13,10 +13,10 @@ import FirebaseAuth
 struct LoginView: View {
     @Binding var isLoggedIn: Bool
     
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var signError = false
-    @State private var signingUp = false
+    @Binding var username: String
+    @Binding var password: String
+    @Binding var signError: Bool
+    @Binding var signingUp: Bool
     
     var body: some View{
         ZStack{
@@ -36,7 +36,7 @@ struct LoginView: View {
                 Text("Something went wrong. Please double check all fields entered.")
             }
             .sheet(isPresented: $signingUp) {
-                SignUpView(username: $username, password: $password, signError: $signError, signingUp: $signingUp
+                SignUpView(username: $username, password: $password, signError: $signError, signingUp: $signingUp, isLoggedIn: $isLoggedIn
                 )
             }
         }
@@ -44,7 +44,7 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(isLoggedIn: .constant(false))
+    LoginView(isLoggedIn: .constant(false), username: .constant(""), password: .constant(""), signError: .constant(false), signingUp: .constant(false))
 }
 
 
