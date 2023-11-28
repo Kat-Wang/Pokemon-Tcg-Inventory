@@ -7,57 +7,42 @@
 
 import Foundation
 
-struct Card: Decodable {
+struct Card: Decodable, Identifiable {
     let id: String
     let name: String
-    let imageUrl: String
-    let supertype: String
-    let subtype: String?
-    let set: String
-    let rarity: String
-    let series: String
-    let tcgPlayer: TCGPlayerInfo?
-    // Add other properties as needed based on the API response
+    let images: Images?
+    let supertype: String?
+    let subtypes: [String]?
+    let level: String?
+    let hp: String?
+    let types: [String]?
+    let abilities: Abilities?
     
-    enum CodingKeys: String, CodingKey {
-        case id, name, imageUrl, supertype, subtype, set, rarity, series
-        case tcgPlayer = "tcgplayer"
-        // Map additional properties here
-    }
 }
 
-struct TCGPlayerInfo: Decodable {
-    let url: String
-    let prices: Prices
-    let isDirect: Bool
-    // Add other TCGPlayer-related properties if needed
-    
-    enum CodingKeys: String, CodingKey {
-        case url, prices, isDirect
-        // Map additional properties here
-    }
+struct Abilities: Decodable {
+    let name: String
+    let text: String
+    let type: String
 }
 
-struct Prices: Decodable {
-    let normal: PriceDetails
-    let holofoil: PriceDetails
-    // Add other price details if needed
-    
-    enum CodingKeys: String, CodingKey {
-        case normal, holofoil
-        // Map additional price keys here
-    }
+struct Images: Decodable {
+    let small: String
+    let large: String
 }
 
-struct PriceDetails: Decodable {
-    let market: Double
-    let low: Double
-    let mid: Double
-    let high: Double
-    // Add other price details if needed
+struct MockData {
+    static let sampleAbilities = Abilities(name: "Fake Ability", text: "This is a fake ability", type: "Ability")
     
-    enum CodingKeys: String, CodingKey {
-        case market, low, mid, high
-        // Map additional price detail keys here
-    }
+    static let sampleImages = Images(small: "https://images.pokemontcg.io/xy1/1.png", large: "https://images.pokemontcg.io/xy1/1_hires.png")
+    
+    static let sampleCard = Card(id: "xy1-1",
+                                 name: "Venusaur-EX",
+                                 images: sampleImages,
+                                 supertype: "Pokemon",
+                                 subtypes: ["Basic", "EX"],
+                                 level: nil,
+                                 hp: "100",
+                                 types: ["Grass"],
+                                 abilities: sampleAbilities)
 }

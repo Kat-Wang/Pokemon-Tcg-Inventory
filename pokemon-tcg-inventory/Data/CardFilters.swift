@@ -10,6 +10,16 @@ import SwiftUI
 
 @Observable
 class CardFilters {
+    var stageFilterNames = ["basic", "stage1", "stage2", "vmax", "vstar", "vunion", "mega", "_break", "restored", "legend"]
+    var mechanicFilterNames = ["ex", "v", "gx", "ex", "radiant", "prismstar", "acespec", "vunion"]
+    var typeFilterNames = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal", "fairy", "dragon", "colorless"]
+    var labelFilterNames = ["fusionstrike", "singlestrike", "rapidstrike", "tagteam", "ultrabeast", "teamplasma"]
+    var extraFilterNames = ["ability", "ancienttrait", "baby"]
+    var trainerFilterNames = ["item", "supporter", "stadium", "tool"]
+    var energyFilterNmaes = ["basicenergy", "specialenergy"]
+    var sortingFilterNames = ["sortName", "sortHP", "sortCode", "sortType", "sortAsc", "sortDesc"]
+    var formatFilterNames = ["standard", "expanded", "unlimited"]
+    
     var filters = [
         "pokemon": false,
         "trainer": false,
@@ -49,6 +59,7 @@ class CardFilters {
         "teamplasma": false,
         "ability": false,
         "ancienttrait": false,
+        "baby": false,
         "item": false,
         "supporter": false,
         "stadium": false,
