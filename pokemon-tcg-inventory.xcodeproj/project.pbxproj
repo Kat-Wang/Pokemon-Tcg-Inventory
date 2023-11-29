@@ -149,7 +149,6 @@
 				56F9420E2B12D39800407E8D /* TitleLogo.swift */,
 				56F942102B12D3DC00407E8D /* SignUpPrompt.swift */,
 				56F942122B140AB400407E8D /* SignUpFields.swift */,
-				56A0B0822B15407E009F9788 /* Testing.swift */,
 				564835032B1658A00056A84B /* FilterButton.swift */,
 			);
 			path = Subviews;
@@ -158,6 +157,7 @@
 		56F942142B1428FF00407E8D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				56A0B0822B15407E009F9788 /* Testing.swift */,
 				56F942152B14291700407E8D /* InvertedBindingBool.swift */,
 				56F942172B14292000407E8D /* HexColor.swift */,
 			);

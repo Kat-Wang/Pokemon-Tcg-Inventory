@@ -10,15 +10,33 @@ import SwiftUI
 
 @Observable
 class CardFilters {
-    var stageFilterNames = ["basic", "stage1", "stage2", "vmax", "vstar", "vunion", "mega", "_break", "restored", "legend"]
-    var mechanicFilterNames = ["ex", "v", "gx", "ex", "radiant", "prismstar", "acespec", "vunion"]
-    var typeFilterNames = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal", "fairy", "dragon", "colorless"]
-    var labelFilterNames = ["fusionstrike", "singlestrike", "rapidstrike", "tagteam", "ultrabeast", "teamplasma"]
-    var extraFilterNames = ["ability", "ancienttrait", "baby"]
-    var trainerFilterNames = ["item", "supporter", "stadium", "tool"]
-    var energyFilterNmaes = ["basicenergy", "specialenergy"]
-    var sortingFilterNames = ["sortName", "sortHP", "sortCode", "sortType", "sortAsc", "sortDesc"]
-    var formatFilterNames = ["standard", "expanded", "unlimited"]
+    var stageFilters = ["basic", "stage1", "stage2", "vmax", "vstar", "vunion", "mega", "_break", "restored", "legend"]
+    var stageFilterNames = ["Basic", "Stage 1", "Stage 2", "VMAX", "STAR", "V-UNION", "Mega", "Break", "Restored", "Legend"]
+    
+    var mechanicFilters = ["ex", "v", "gx", "ex", "radiant", "prismstar", "acespec", "vunion"]
+    var mechanicFilterNames = ["EX", "V", "GX", "Radiant", "Prism Star", "Ace Spec", "V-UNION"]
+    
+    var typeFilters = ["grass", "fire", "water", "lightning", "psychic", "fighting", "darkness", "metal", "fairy", "dragon", "colorless"]
+    var typeFilterNames = ["Grass", "Fire", "Water", "Lightning", "Psychic", "Fighting", "Darkness", "Metal", "Fairy", "Dragon", "Colorless"]
+    
+    var labelFilters = ["fusionstrike", "singlestrike", "rapidstrike", "tagteam", "ultrabeast", "teamplasma"]
+    var labelFilterNames = ["Fusion Strike", "Single Strike", "Rapid Strike", "Tag Team", "Ultra Beast", "Team Plasma"]
+
+    var extraFilters = ["ability", "ancienttrait", "baby"]
+    var extraFilterNames = ["Ability", "Ancient Trait", "Baby"]
+    
+    var trainerFilters = ["item", "supporter", "stadium", "tool"]
+    var trainerFilterNames = ["Item", "Supporter", "Stadium", "Tool"]
+    
+    var energyFilters = ["basicenergy", "specialenergy"]
+    var energyFilterNames = ["Basic", "Special"]
+    
+    var sortingFilters = ["sortName", "sortHP", "sortCode", "sortType", "sortAsc", "sortDesc"]
+    var sortingFilterNames = ["Name", "HP", "Code", "Type", "Sort Asc", "Sort Desc"]
+    
+    var formatFilters = ["standard", "expanded", "unlimited"]
+    var formatFilterNames = ["Standard", "Expanded", "Unlimited"]
+    
     
     var filters = [
         "pokemon": false,

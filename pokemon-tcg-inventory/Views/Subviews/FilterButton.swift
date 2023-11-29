@@ -12,7 +12,7 @@ struct FilterButton: View {
     var text: String
     var filter: String
     
-    @Binding var cardFilters: CardFilters
+    var cardFilters: CardFilters
     
     var body: some View {
         
@@ -22,7 +22,7 @@ struct FilterButton: View {
         } label: {
             Text(text)
                 .font(.caption)
-                .frame(width: 75, height: 35)
+                .frame(width: 80, height: 35)
                 .foregroundColor(cardFilters.filters[filter]! ? .white : .black)
                 .background(RoundedRectangle(
                     cornerRadius: 20,
@@ -31,7 +31,6 @@ struct FilterButton: View {
                     .fill(cardFilters.filters[filter]! ? Color(hex: "#4484b2") : .white)
                 )
                 .overlay {
-                    
                     RoundedRectangle(
                         cornerRadius: 20,
                         style: .continuous
