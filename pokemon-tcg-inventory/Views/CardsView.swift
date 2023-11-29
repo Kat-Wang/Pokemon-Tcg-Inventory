@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
 
 struct CardsView: View {
     
@@ -22,7 +21,8 @@ struct CardsView: View {
                 SupertypeFilterButton(text: "Trainer", filter: "trainer", cardFilters: $cardFilters)
                 SupertypeFilterButton(text: "Energy", filter: "energy", cardFilters: $cardFilters)
             }
-            PokemonSubTypesFilters(cardFilters: cardFilters)
+            cardFilters.filters["pokemon"]! ? PokemonSubtypesFilters(cardFilters: $cardFilters) : nil
+            cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
         }
     }
 }
@@ -32,25 +32,26 @@ struct CardsView: View {
 }
 
 struct FilterButtonGrid: View {
+    let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var filters: [String]
     var filterNames: [String]
-    var cardFilters: CardFilters
+    @Binding var cardFilters: CardFilters
     
     var body: some View {
         
         LazyVGrid(columns: columns){
             ForEach(0...(filterNames.count-1), id: \.self){
-                FilterButton(text: filterNames[$0], filter: filters[$0], cardFilters: cardFilters)
+                FilterButton(text: filterNames[$0], filter: filters[$0], cardFilters: $cardFilters)
             }
         }
-        .padding([.trailing, .leading, .bottom], 10)
     }
 }
 
-struct PokemonSubTypesFilters: View {
 
-    var cardFilters: CardFilters
+struct PokemonSubtypesFilters: View {
+
+    @Binding var cardFilters: CardFilters
     
     @State var pokemonSubtypeSegCtl = 0
     
@@ -74,6 +75,7 @@ struct PokemonSubTypesFilters: View {
                 )
                 .overlay(
                     segCtrlfilterButtonGrid
+                        .padding([.trailing, .leading], 10)
                 )
                 .frame(width: 350, height: 150)
         }
@@ -83,16 +85,53 @@ struct PokemonSubTypesFilters: View {
     var segCtrlfilterButtonGrid: some View {
         switch pokemonSubtypeSegCtl {
         case 0:
-            FilterButtonGrid(filters: cardFilters.stageFilters, filterNames: cardFilters.stageFilterNames, cardFilters: cardFilters)
+            FilterButtonGrid(filters: cardFilters.stageFilters, filterNames: cardFilters.stageFilterNames, cardFilters: $cardFilters)
         case 1:
-            FilterButtonGrid(filters: cardFilters.mechanicFilters, filterNames: cardFilters.mechanicFilterNames, cardFilters: cardFilters)
+            FilterButtonGrid(filters: cardFilters.mechanicFilters, filterNames: cardFilters.mechanicFilterNames, cardFilters: $cardFilters)
         case 2:
-            FilterButtonGrid(filters: cardFilters.typeFilters, filterNames: cardFilters.typeFilterNames, cardFilters: cardFilters)
+            FilterButtonGrid(filters: cardFilters.typeFilters, filterNames: cardFilters.typeFilterNames, cardFilters: $cardFilters)
         case 3:
-            FilterButtonGrid(filters: cardFilters.labelFilters, filterNames: cardFilters.labelFilterNames, cardFilters: cardFilters)
+            FilterButtonGrid(filters: cardFilters.labelFilters, filterNames: cardFilters.labelFilterNames, cardFilters: $cardFilters)
         default:
-            FilterButtonGrid(filters: cardFilters.extraFilters, filterNames: cardFilters.extraFilterNames, cardFilters: cardFilters)
+            FilterButtonGrid(filters: cardFilters.extraFilters, filterNames: cardFilters.extraFilterNames, cardFilters: $cardFilters)
         }
     }
     
+}
+
+struct TrainerSubtypeFilters: View {
+    
+    @Binding var cardFilters: CardFilters
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .foregroundColor(.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 2)
+            )
+            .overlay(
+                FilterButtonGrid(filters: cardFilters.trainerFilters, filterNames: cardFilters.trainerFilterNames, cardFilters: $cardFilters)
+                    .padding([.trailing, .leading], 10)
+            )
+            .frame(width: 350, height: 55)
+    }
+}
+
+
+struct EnergySubtypeFilters: View {
+    
+    @Binding var cardFilters: CardFilters
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .foregroundColor(.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 2)
+            )
+            .overlay(
+                FilterButtonGrid(filters: cardFilters.trainerFilters, filterNames: cardFilters.trainerFilterNames, cardFilters: $cardFilters)
+                    .padding([.trailing, .leading], 10)
+            )
+            .frame(width: 350, height: 55)
+    }
 }

@@ -11,7 +11,7 @@ struct FilterButton: View {
     
     var text: String
     var filter: String
-    var cardFilters: CardFilters
+    @Binding var cardFilters: CardFilters
     
     var body: some View {
         
