@@ -29,16 +29,13 @@ final class NetworkManager {
             return
         }
         
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = [URLQueryItem(name: "apiKey", value: apiKey)]
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
 
-        guard let finalURL = urlComponents?.url else {
-            completed(.failure(.invalidURL))
-            return
-        }
         
         //if we get good url, we create a network request
-        let task = URLSession.shared.dataTask(with: URLRequest(url: finalURL)) {data, response, error in
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
