@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		564835042B1658A00056A84B /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564835032B1658A00056A84B /* FilterButton.swift */; };
+		569C86212B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 569C86202B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf */; };
 		56A0B0812B14ED6F009F9788 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0802B14ED6F009F9788 /* User.swift */; };
 		56A0B0832B15407E009F9788 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0822B15407E009F9788 /* Testing.swift */; };
 		56A0B0852B155899009F9788 /* CardFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0842B155899009F9788 /* CardFilters.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		564835032B1658A00056A84B /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
+		569C86202B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
 		56A0B0802B14ED6F009F9788 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		56A0B0822B15407E009F9788 /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		56A0B0842B155899009F9788 /* CardFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFilters.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		569C861F2B17FD7A0072CAB5 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				569C86202B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		56F941862B09EC6700407E8D = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				56F941922B09EC6700407E8D /* pokemon_tcg_inventoryApp.swift */,
+				569C861F2B17FD7A0072CAB5 /* fonts */,
 				56F9421F2B145EE000407E8D /* Data */,
 				56F942082B11CE2500407E8D /* Views */,
 				56F942142B1428FF00407E8D /* Utility */,
@@ -243,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				569C86212B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf in Resources */,
 				56F9419C2B09EC6B00407E8D /* Preview Assets.xcassets in Resources */,
 				56F941992B09EC6B00407E8D /* Assets.xcassets in Resources */,
 				56F941B02B0BB53E00407E8D /* GoogleService-Info.plist in Resources */,

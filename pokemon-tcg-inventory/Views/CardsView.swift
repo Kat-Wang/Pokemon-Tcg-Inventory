@@ -12,10 +12,27 @@ import SwiftUI
 struct CardsView: View {
     
     @State var cardFilters = CardFilters()
+    @State var searchField = ""
+    
+    var isDarkMode: Bool
     
     var body: some View {
         
         VStack {
+            Text("Adding Cards")
+                .font(Font.custom("Inter-Regular_Light", size: 35))
+                .multilineTextAlignment(.center)
+            
+            Rectangle()
+                .stroke(Color(isDarkMode ? .white : .black), lineWidth: 1)
+               .frame(width: 330, height: 40)
+               .overlay(
+                    TextField("search cards", text: $searchField)
+                        .font(Font.custom("Inter-Regular_Light", size: 15))
+                        .padding([.leading, .trailing], 8)
+               )
+               .padding([.leading, .trailing, .bottom])
+ 
             HStack {
                 SupertypeFilterButton(text: "Pokemon", filter: "pokemon", cardFilters: $cardFilters)
                 SupertypeFilterButton(text: "Trainer", filter: "trainer", cardFilters: $cardFilters)
@@ -23,12 +40,14 @@ struct CardsView: View {
             }
             cardFilters.filters["pokemon"]! ? PokemonSubtypesFilters(cardFilters: $cardFilters) : nil
             cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
+            cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
+
         }
     }
 }
 
 #Preview {
-    CardsView()
+    CardsView(isDarkMode: false)
 }
 
 struct FilterButtonGrid: View {
@@ -129,7 +148,7 @@ struct EnergySubtypeFilters: View {
                 RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 2)
             )
             .overlay(
-                FilterButtonGrid(filters: cardFilters.trainerFilters, filterNames: cardFilters.trainerFilterNames, cardFilters: $cardFilters)
+                FilterButtonGrid(filters: cardFilters.energyFilters, filterNames: cardFilters.energyFilterNames, cardFilters: $cardFilters)
                     .padding([.trailing, .leading], 10)
             )
             .frame(width: 350, height: 55)

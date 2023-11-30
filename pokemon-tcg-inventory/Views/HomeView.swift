@@ -14,7 +14,7 @@ struct HomeView: View {
 
     var body: some View {
         TabView {
-            CardsView()
+            CardsView(isDarkMode: isDarkMode)
                 .tabItem {
                     Image(systemName: "plus.rectangle.portrait")
                     Text("Add")

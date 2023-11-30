@@ -64,7 +64,7 @@ struct SupertypeFilterButton: View {
             cardFilters.filters[filter] = !cardFilters.filters[filter]!
         } label: {
             Text(text)
-                .font(.caption)
+                .font(Font.custom("Inter-Regular_Light", size: 12))
                 .frame(width: 80, height: 35)
                 .foregroundColor(cardFilters.filters[filter]! ? .white : .black)
                 .background(RoundedRectangle(
