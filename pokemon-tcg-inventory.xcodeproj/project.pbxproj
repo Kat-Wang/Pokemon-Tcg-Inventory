@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		564835042B1658A00056A84B /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564835032B1658A00056A84B /* FilterButton.swift */; };
 		569C86212B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 569C86202B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf */; };
+		569C86232B181C800072CAB5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C86222B181C800072CAB5 /* NetworkManager.swift */; };
+		569C86252B181D110072CAB5 /* APError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C86242B181D110072CAB5 /* APError.swift */; };
+		569C86272B1827C90072CAB5 /* SubtypeFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C86262B1827C90072CAB5 /* SubtypeFilters.swift */; };
+		569C86292B1831C90072CAB5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C86282B1831C90072CAB5 /* Alert.swift */; };
+		569C862B2B1847600072CAB5 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C862A2B1847600072CAB5 /* RemoteImage.swift */; };
 		56A0B0812B14ED6F009F9788 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0802B14ED6F009F9788 /* User.swift */; };
 		56A0B0832B15407E009F9788 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0822B15407E009F9788 /* Testing.swift */; };
 		56A0B0852B155899009F9788 /* CardFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0842B155899009F9788 /* CardFilters.swift */; };
@@ -40,6 +45,11 @@
 /* Begin PBXFileReference section */
 		564835032B1658A00056A84B /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		569C86202B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
+		569C86222B181C800072CAB5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		569C86242B181D110072CAB5 /* APError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APError.swift; sourceTree = "<group>"; };
+		569C86262B1827C90072CAB5 /* SubtypeFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtypeFilters.swift; sourceTree = "<group>"; };
+		569C86282B1831C90072CAB5 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		569C862A2B1847600072CAB5 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		56A0B0802B14ED6F009F9788 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		56A0B0822B15407E009F9788 /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		56A0B0842B155899009F9788 /* CardFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFilters.swift; sourceTree = "<group>"; };
@@ -120,6 +130,9 @@
 				56F9419D2B09EC6B00407E8D /* pokemon_tcg_inventory.entitlements */,
 				56F9419E2B09EC6B00407E8D /* Info.plist */,
 				56F9419A2B09EC6B00407E8D /* Preview Content */,
+				569C86222B181C800072CAB5 /* NetworkManager.swift */,
+				569C86242B181D110072CAB5 /* APError.swift */,
+				569C862A2B1847600072CAB5 /* RemoteImage.swift */,
 			);
 			path = "pokemon-tcg-inventory";
 			sourceTree = "<group>";
@@ -161,6 +174,7 @@
 				56F942102B12D3DC00407E8D /* SignUpPrompt.swift */,
 				56F942122B140AB400407E8D /* SignUpFields.swift */,
 				564835032B1658A00056A84B /* FilterButton.swift */,
+				569C86262B1827C90072CAB5 /* SubtypeFilters.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -181,6 +195,7 @@
 				56F942202B145EFD00407E8D /* Card.swift */,
 				56A0B0802B14ED6F009F9788 /* User.swift */,
 				56A0B0842B155899009F9788 /* CardFilters.swift */,
+				569C86282B1831C90072CAB5 /* Alert.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -268,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				569C86232B181C800072CAB5 /* NetworkManager.swift in Sources */,
 				56F941952B09EC6700407E8D /* LoginView.swift in Sources */,
 				564835042B1658A00056A84B /* FilterButton.swift in Sources */,
 				56F9420A2B11CE5A00407E8D /* HomeView.swift in Sources */,
@@ -275,15 +291,19 @@
 				56F9421E2B14543600407E8D /* InventoryView.swift in Sources */,
 				56F9421C2B144A8700407E8D /* CardsView.swift in Sources */,
 				56F9420D2B12D1A500407E8D /* SignIn.swift in Sources */,
+				569C86292B1831C90072CAB5 /* Alert.swift in Sources */,
 				56A0B0832B15407E009F9788 /* Testing.swift in Sources */,
 				56F9421A2B144A3D00407E8D /* AccountView.swift in Sources */,
 				56F9420F2B12D39800407E8D /* TitleLogo.swift in Sources */,
 				56A0B0812B14ED6F009F9788 /* User.swift in Sources */,
+				569C86272B1827C90072CAB5 /* SubtypeFilters.swift in Sources */,
 				56F942162B14291700407E8D /* InvertedBindingBool.swift in Sources */,
 				56F942212B145EFE00407E8D /* Card.swift in Sources */,
 				56F942072B10861000407E8D /* SignUpView.swift in Sources */,
+				569C86252B181D110072CAB5 /* APError.swift in Sources */,
 				56A0B0852B155899009F9788 /* CardFilters.swift in Sources */,
 				56F942182B14292000407E8D /* HexColor.swift in Sources */,
+				569C862B2B1847600072CAB5 /* RemoteImage.swift in Sources */,
 				56F942112B12D3DC00407E8D /* SignUpPrompt.swift in Sources */,
 				56F941932B09EC6700407E8D /* pokemon_tcg_inventoryApp.swift in Sources */,
 			);

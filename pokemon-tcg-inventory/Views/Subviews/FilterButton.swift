@@ -39,7 +39,23 @@ struct FilterButton: View {
     }
 }
 
-//TODO: Create a filter button specific to supertypes
+struct FilterButtonGrid: View {
+    let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
+    var filters: [String]
+    var filterNames: [String]
+    @Binding var cardFilters: CardFilters
+    
+    var body: some View {
+        
+        LazyVGrid(columns: columns){
+            ForEach(0...(filterNames.count-1), id: \.self){
+                FilterButton(text: filterNames[$0], filter: filters[$0], cardFilters: $cardFilters)
+            }
+        }
+    }
+}
+
 struct SupertypeFilterButton: View {
     
     var text: String
@@ -52,7 +68,6 @@ struct SupertypeFilterButton: View {
             if filter == "pokemon" {
                 cardFilters.filters["trainer"] = false
                 cardFilters.filters["energy"] = false
-                print("hello")
             } else if filter == "trainer" {
                 cardFilters.filters["pokemon"] = false
                 cardFilters.filters["energy"] = false

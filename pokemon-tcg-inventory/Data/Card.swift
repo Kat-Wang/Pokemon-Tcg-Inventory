@@ -16,11 +16,11 @@ struct Card: Decodable, Identifiable {
     let level: String?
     let hp: String?
     let types: [String]?
-    let abilities: Abilities?
+    let abilities: [Ability]?
     
 }
 
-struct Abilities: Decodable {
+struct Ability: Decodable {
     let name: String
     let text: String
     let type: String
@@ -31,8 +31,29 @@ struct Images: Decodable {
     let large: String
 }
 
+struct CardResponse : Decodable {
+    let data: [Card]
+    let page: Int
+    let pageSize: Int
+    let count: Int
+    let totalCount: Int
+}
+
+//struct CardResponse: Decodable {
+//    let data: [Card]
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case data
+//    }
+//
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        data = try container.decode([Card].self, forKey: .data)
+//    }
+//}
+
 struct MockData {
-    static let sampleAbilities = Abilities(name: "Fake Ability", text: "This is a fake ability", type: "Ability")
+    static let sampleAbilities = Ability(name: "Fake Ability", text: "This is a fake ability", type: "Ability")
     
     static let sampleImages = Images(small: "https://images.pokemontcg.io/xy1/1.png", large: "https://images.pokemontcg.io/xy1/1_hires.png")
     
@@ -44,5 +65,5 @@ struct MockData {
                                  level: nil,
                                  hp: "100",
                                  types: ["Grass"],
-                                 abilities: sampleAbilities)
+                                 abilities: [sampleAbilities])
 }
