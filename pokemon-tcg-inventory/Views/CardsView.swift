@@ -26,15 +26,7 @@ struct CardsView: View {
                     .font(Font.custom("Inter-Regular_Light", size: 35))
                     .multilineTextAlignment(.center)
                 
-                Rectangle()
-                    .stroke(Color(isDarkMode ? .white : .black), lineWidth: 1)
-                    .frame(width: 330, height: 40)
-                    .overlay(
-                        TextField("search cards", text: $searchField)
-                            .font(Font.custom("Inter-Regular_Light", size: 15))
-                            .padding([.leading, .trailing], 8)
-                    )
-                    .padding([.leading, .trailing, .bottom])
+                SearchBar(searchField: $searchField, isDarkMode: isDarkMode)
                 
                 HStack {
                     SupertypeFilterButton(text: "Pokemon", filter: "pokemon", cardFilters: $cardFilters)
@@ -62,7 +54,7 @@ struct CardsView: View {
     
     func getCards(){
         //result is either a success case or error case
-        NetworkManager.shared.getCards { result in
+        NetworkManager.shared.getCards(with: cardFilters) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let cards):
@@ -89,7 +81,7 @@ struct CardsView: View {
 }
 
 
-struct CardCell : View {
+struct CardCell: View {
     
     var card: Card
     
@@ -100,5 +92,23 @@ struct CardCell : View {
                 .frame(width: 120, height: 168)
                 .cornerRadius(8)
         }
+    }
+}
+
+struct SearchBar: View {
+    
+    @Binding var searchField: String
+    var isDarkMode: Bool
+    
+    var body: some View {
+        Rectangle()
+            .stroke(Color(isDarkMode ? .white : .black), lineWidth: 1)
+            .frame(width: 330, height: 40)
+            .overlay(
+                TextField("search cards", text: $searchField)
+                    .font(Font.custom("Inter-Regular_Light", size: 15))
+                    .padding([.leading, .trailing], 8)
+            )
+            .padding([.leading, .trailing, .bottom])
     }
 }

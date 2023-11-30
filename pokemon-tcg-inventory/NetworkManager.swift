@@ -14,8 +14,9 @@ final class NetworkManager {
     private let cache = NSCache<NSString, UIImage>()
     
     let apiKey = Bundle.main.object(forInfoDictionaryKey: "PokemonTCGApiKey")
-    
+        
     static let baseURL = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=5"
+    
     private let cardURL = baseURL + ""
     
     private init() {}
@@ -23,7 +24,7 @@ final class NetworkManager {
     //need to write 2 func - get appetizers and download images
     
     //returns an array of appetizers
-    func getCards(completed: @escaping (Result<[Card], APError>) -> Void){
+    func getCards(with filters: CardFilters, completed: @escaping (Result<[Card], APError>) -> Void){
         guard let apiKey = apiKey as? String, let url = URL(string: cardURL) else {
             completed(.failure(.invalidURL))
             return
