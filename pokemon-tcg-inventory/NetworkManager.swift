@@ -13,6 +13,8 @@ final class NetworkManager {
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
     
+    let apiKey = Bundle.main.object(forInfoDictionaryKey: "PokemonTCGApiKey")
+    
     static let baseURL = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=5"
     private let cardURL = baseURL + ""
     
@@ -22,13 +24,21 @@ final class NetworkManager {
     
     //returns an array of appetizers
     func getCards(completed: @escaping (Result<[Card], APError>) -> Void){
-        guard let url = URL(string: cardURL) else {
+        guard let apiKey = apiKey as? String, let url = URL(string: cardURL) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = [URLQueryItem(name: "apiKey", value: apiKey)]
+
+        guard let finalURL = urlComponents?.url else {
             completed(.failure(.invalidURL))
             return
         }
         
         //if we get good url, we create a network request
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) {data, response, error in
+        let task = URLSession.shared.dataTask(with: URLRequest(url: finalURL)) {data, response, error in
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return

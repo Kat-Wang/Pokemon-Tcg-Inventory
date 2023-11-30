@@ -131,7 +131,6 @@
 				56F9419E2B09EC6B00407E8D /* Info.plist */,
 				56F9419A2B09EC6B00407E8D /* Preview Content */,
 				569C86222B181C800072CAB5 /* NetworkManager.swift */,
-				569C86242B181D110072CAB5 /* APError.swift */,
 				569C862A2B1847600072CAB5 /* RemoteImage.swift */,
 			);
 			path = "pokemon-tcg-inventory";
@@ -183,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				56A0B0822B15407E009F9788 /* Testing.swift */,
+				569C86242B181D110072CAB5 /* APError.swift */,
 				56F942152B14291700407E8D /* InvertedBindingBool.swift */,
 				56F942172B14292000407E8D /* HexColor.swift */,
 			);
