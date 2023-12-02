@@ -15,33 +15,35 @@ final class NetworkManager {
     
     let apiKey = Bundle.main.object(forInfoDictionaryKey: "PokemonTCGApiKey")
         
-    static let baseURL = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=5"
-    
-    private let cardURL = baseURL + ""
-    
+    private let baseURL = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=5&q=subtypes:%22Stage%201%22"
+        
     private init() {}
-    
-    //need to write 2 func - get appetizers and download images
-    
-    //returns an array of appetizers
+        
     func getCards(with filters: CardFilters, completed: @escaping (Result<[Card], APError>) -> Void){
-        guard let apiKey = apiKey as? String, let url = URL(string: cardURL) else {
+        guard let apiKey = apiKey as? String, var urlComponents = URLComponents(string: baseURL) else {
             completed(.failure(.invalidURL))
             return
         }
         
-        var request = URLRequest(url: url)
+        var queryString = "&q="
+
+        for (filter, value) in filters.filters {
+            if value {
+                queryString += filters.filterQueries[filter]!
+            }
+        }
+        
+        var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
         request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
 
-        
         //if we get good url, we create a network request
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
             }
-            //200 is the things went good html code
+            
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 completed(.failure(.invalidResponse))
                 return
@@ -53,21 +55,18 @@ final class NetworkManager {
             }
             
             //if we get past all the checks, we can do stuff with the data
-            
             do {
-//                print(String(data: data, encoding: .utf8)!)
                 let decoder = JSONDecoder()
-                //from our data we have, decode that into an AppetizerResponse (which is an array of appetizer json objects)
+                //from our data we have, decode that into an CardResponse (which is an array of card json objects, plus some garbage at the end)
                 let decodedResponse = try decoder.decode(CardResponse.self, from: data)
-                //getting request because thats how our AppetizerResponse was structured
+                //getting request because thats how our CardResponse was structured
                 completed(.success(decodedResponse.data))
             } catch {
-//                print("Decoding error:", error)
                 completed(.failure(.invalidData))
             }
         }
-        //fires off the network call
-        task.resume()
+        
+//        task.resume()
     }
     
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void) {
@@ -96,7 +95,7 @@ final class NetworkManager {
             
             completed(image)
         }
-        //fires off the network call
+
         task.resume()
     }
     
