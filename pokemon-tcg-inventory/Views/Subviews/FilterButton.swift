@@ -66,14 +66,30 @@ struct SupertypeFilterButton: View {
     var body: some View {
         Button {
             if filter == "pokemon" {
-                cardFilters.filters["trainer"] = false
-                cardFilters.filters["energy"] = false
+                for (filter, value) in cardFilters.filters {
+                    if filter != "pokemon" {
+                        cardFilters.filters[filter] = false
+                    } else {
+                        cardFilters.filters[filter] = value
+                    }
+                }
+                
             } else if filter == "trainer" {
-                cardFilters.filters["pokemon"] = false
-                cardFilters.filters["energy"] = false
+                for (filter, value) in cardFilters.filters {
+                    if filter != "trainer" {
+                        cardFilters.filters[filter] = false
+                    } else {
+                        cardFilters.filters[filter] = value
+                    }
+                }
             } else if filter == "energy" {
-                cardFilters.filters["pokemon"] = false
-                cardFilters.filters["trainer"] = false
+                for (filter, value) in cardFilters.filters {
+                    if filter != "energy" {
+                        cardFilters.filters[filter] = false
+                    } else {
+                        cardFilters.filters[filter] = value
+                    }
+                }
             }
             
             cardFilters.filters[filter] = !cardFilters.filters[filter]!

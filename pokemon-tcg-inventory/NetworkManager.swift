@@ -15,22 +15,22 @@ final class NetworkManager {
     
     let apiKey = Bundle.main.object(forInfoDictionaryKey: "PokemonTCGApiKey")
         
-    private let baseURL = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=5&q=subtypes:%22Stage%201%22"
+    private let baseURL = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=5"
         
     private init() {}
         
     func getCards(with filters: CardFilters, completed: @escaping (Result<[Card], APError>) -> Void){
-        guard let apiKey = apiKey as? String, var urlComponents = URLComponents(string: baseURL) else {
-            completed(.failure(.invalidURL))
-            return
-        }
-        
         var queryString = "&q="
 
         for (filter, value) in filters.filters {
             if value {
                 queryString += filters.filterQueries[filter]!
             }
+        }
+        
+        guard let apiKey = apiKey as? String, let urlComponents = URLComponents(string: baseURL + queryString) else {
+            completed(.failure(.invalidURL))
+            return
         }
         
         var request = URLRequest(url: urlComponents.url!)
@@ -66,7 +66,7 @@ final class NetworkManager {
             }
         }
         
-//        task.resume()
+        task.resume()
     }
     
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void) {
