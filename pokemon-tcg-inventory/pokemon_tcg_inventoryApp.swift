@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import FirebaseCore
+import FirebaseFirestore
 
 @main
 struct pokemon_tcg_inventoryApp: App {

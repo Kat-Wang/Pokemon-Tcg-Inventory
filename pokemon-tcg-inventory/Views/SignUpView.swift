@@ -51,16 +51,11 @@ struct SignUpView: View {
                     if password == confirmPassword {
                         statusMsg = ""
                         
-                        Auth.auth().createUser(withEmail: username, password: password) { result, error in
-                            if (error != nil) {
-                                signError = true
-                            }
-                            else {
-                                signingUp = false
-                                Auth.auth().signIn(withEmail: username, password: password)
-                                isLoggedIn = true
-                            }
+                        UserManager.shared.createUser(username: username, password: password) { error, loggedIn in
+                            signError = error
+                            isLoggedIn = loggedIn
                         }
+
                     }
                     else {
                         statusMsg = "Re-confirm password incorrect."

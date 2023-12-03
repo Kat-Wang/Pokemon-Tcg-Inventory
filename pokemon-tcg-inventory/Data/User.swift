@@ -12,7 +12,7 @@ import SwiftUI
 @Observable
 class User {
     //TODO: SET THIS VAR TO FALSE WHEN DONE TESTING HOME
-    var isLoggedIn = true
+    var isLoggedIn = false
     var username: String = ""
     var password: String = ""
     var signError = false

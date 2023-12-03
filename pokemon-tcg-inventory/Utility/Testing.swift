@@ -1,23 +1,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var favoriteColor = 0
+    @State private var isAnimated = false
 
     var body: some View {
         VStack {
-            Picker("What is your favorite color?", selection: $favoriteColor) {
-                Text("Red").tag(0)
-                Text("Green").tag(1)
-                Text("Blue").tag(2)
-            }
-            .pickerStyle(.segmented)
+            Rectangle()
+                .frame(width: 100, height: 100)
+                .foregroundColor(.blue)
+                .scaleEffect(isAnimated ? 1.5 : 1) // Scales the rectangle on animation
+                .animation(.easeInOut(duration: 1)) // Animates the changes
 
-            Text("Value: \(favoriteColor)")
+            Button("Animate") {
+                withAnimation {
+                    self.isAnimated.toggle()
+                }
+            }
+            .padding()
         }
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
-

@@ -29,8 +29,10 @@ struct AccountView: View {
             .navigationTitle("Account")
         }
     }
+    
 }
 
 #Preview {
     AccountView(user: .constant(sampleUser), isDarkMode: .constant(false))
 }
+
