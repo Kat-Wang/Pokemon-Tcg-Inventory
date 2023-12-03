@@ -12,23 +12,41 @@ final class NetworkManager {
     
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
-    
     let apiKey = Bundle.main.object(forInfoDictionaryKey: "PokemonTCGApiKey")
         
-    private let baseURL = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=5"
+    private let baseURL = "https://api.pokemontcg.io/v2/cards?"
         
     private init() {}
+    
+    func getMoreCards(for page: Int, with filters: CardFilters, filterText: String?, completed: @escaping (Result<[Card], APError>) -> Void){
+        getCards(for: page, with: filters, filterText: filterText, completed: completed)
+    }
         
-    func getCards(with filters: CardFilters, completed: @escaping (Result<[Card], APError>) -> Void){
+    func getCards(for page: Int, with filters: CardFilters, filterText: String?, completed: @escaping (Result<[Card], APError>) -> Void){
+        
+        var pageString = "page=\(page)&pageSize=5"
+        
+        var textQueryString = ""
+        
         var queryString = "&q="
-
+        
         for (filter, value) in filters.filters {
             if value {
                 queryString += filters.filterQueries[filter]!
             }
         }
         
-        guard let apiKey = apiKey as? String, let urlComponents = URLComponents(string: baseURL + queryString) else {
+        if var filterText = filterText, !filterText.isEmpty {
+            var formattedFilterText = filterText.replacingOccurrences(of: " ", with: "%20")
+//            var formattedFilterText = filterText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+            
+            textQueryString = "name:%22*\(formattedFilterText)*%22%20or%20abilities.name:%22\(formattedFilterText)%22%20or%20abilities.text:%22\(formattedFilterText)%22%20or%20attacks.name:%22\(formattedFilterText)%22%20or%20attacks.text:%22\(formattedFilterText)%22"
+        }
+        
+        print(textQueryString)
+        
+        guard let apiKey = apiKey as? String, let urlComponents = URLComponents(string: baseURL + pageString + queryString + textQueryString) else {
             completed(.failure(.invalidURL))
             return
         }
@@ -36,7 +54,9 @@ final class NetworkManager {
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
         request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
-
+        
+        print(urlComponents.url)
+        
         //if we get good url, we create a network request
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             if let _ = error {
@@ -45,6 +65,7 @@ final class NetworkManager {
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                
                 completed(.failure(.invalidResponse))
                 return
             }

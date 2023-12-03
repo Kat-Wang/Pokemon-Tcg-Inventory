@@ -15,6 +15,7 @@ struct CardsView: View {
     @State var alertItem: AlertItem?
     @State var searchField = ""
     @State var cards: [Card] = []
+    @State var queryPage = 1
     
     var isDarkMode: Bool
     
@@ -33,6 +34,7 @@ struct CardsView: View {
                     SupertypeFilterButton(text: "Trainer", filter: "trainer", cardFilters: $cardFilters)
                     SupertypeFilterButton(text: "Energy", filter: "energy", cardFilters: $cardFilters)
                 }
+                
                 cardFilters.filters["pokemon"]! ? PokemonSubtypeFilters(cardFilters: $cardFilters) : nil
                 cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
                 cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
@@ -42,10 +44,21 @@ struct CardsView: View {
                         CardCell(card: card)
                     }
                 }
+                
+                Button {
+                    getMoreCards()
+                } label: {
+                    Text("Load More")
+                }
+                
             }
             .onChange(of: cardFilters.filters) {
                 getCards()
             }
+            .onChange(of: searchField) {
+                getCards()
+            }
+            
         }
         .alert(item: $alertItem) {alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
@@ -53,12 +66,36 @@ struct CardsView: View {
     }
     
     func getCards(){
-        //result is either a success case or error case
-        NetworkManager.shared.getCards(with: cardFilters) { result in
+        queryPage = 1
+        NetworkManager.shared.getCards(for: queryPage, with: cardFilters, filterText: searchField) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let cards):
                     self.cards = cards
+                case .failure(let error):
+                    switch error {
+                    case .invalidResponse:
+                        self.alertItem = AlertContext.invalidResponse
+                    case .invalidURL:
+                        self.alertItem = AlertContext.invalidURL
+                    case .invalidData:
+                        self.alertItem = AlertContext.invalidData
+                    case .unableToComplete:
+                        self.alertItem = AlertContext.unableToComplete
+                    }
+                }
+            }
+        }
+    }
+    
+    func getMoreCards(){
+        queryPage += 1
+        
+        NetworkManager.shared.getMoreCards(for: queryPage, with: cardFilters, filterText: searchField) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let cards):
+                    self.cards.append(contentsOf: cards)
                 case .failure(let error):
                     switch error {
                     case .invalidResponse:
@@ -80,7 +117,6 @@ struct CardsView: View {
     CardsView(isDarkMode: false)
 }
 
-
 struct CardCell: View {
     
     var card: Card
@@ -95,20 +131,3 @@ struct CardCell: View {
     }
 }
 
-struct SearchBar: View {
-    
-    @Binding var searchField: String
-    var isDarkMode: Bool
-    
-    var body: some View {
-        Rectangle()
-            .stroke(Color(isDarkMode ? .white : .black), lineWidth: 1)
-            .frame(width: 330, height: 40)
-            .overlay(
-                TextField("search cards", text: $searchField)
-                    .font(Font.custom("Inter-Regular_Light", size: 15))
-                    .padding([.leading, .trailing], 8)
-            )
-            .padding([.leading, .trailing, .bottom])
-    }
-}

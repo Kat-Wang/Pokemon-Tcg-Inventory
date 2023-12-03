@@ -17,6 +17,7 @@
 		56A0B0812B14ED6F009F9788 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0802B14ED6F009F9788 /* User.swift */; };
 		56A0B0832B15407E009F9788 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0822B15407E009F9788 /* Testing.swift */; };
 		56A0B0852B155899009F9788 /* CardFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A0B0842B155899009F9788 /* CardFilters.swift */; };
+		56A33B272B1BE93000C1FADD /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A33B262B1BE93000C1FADD /* SearchBar.swift */; };
 		56F941932B09EC6700407E8D /* pokemon_tcg_inventoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F941922B09EC6700407E8D /* pokemon_tcg_inventoryApp.swift */; };
 		56F941952B09EC6700407E8D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F941942B09EC6700407E8D /* LoginView.swift */; };
 		56F941992B09EC6B00407E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56F941982B09EC6B00407E8D /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		56A0B0802B14ED6F009F9788 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		56A0B0822B15407E009F9788 /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		56A0B0842B155899009F9788 /* CardFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFilters.swift; sourceTree = "<group>"; };
+		56A33B262B1BE93000C1FADD /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		56F9418F2B09EC6700407E8D /* pokemon-tcg-inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pokemon-tcg-inventory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F941922B09EC6700407E8D /* pokemon_tcg_inventoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokemon_tcg_inventoryApp.swift; sourceTree = "<group>"; };
 		56F941942B09EC6700407E8D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				56F942122B140AB400407E8D /* SignUpFields.swift */,
 				564835032B1658A00056A84B /* FilterButton.swift */,
 				569C86262B1827C90072CAB5 /* SubtypeFilters.swift */,
+				56A33B262B1BE93000C1FADD /* SearchBar.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				564835042B1658A00056A84B /* FilterButton.swift in Sources */,
 				56F9420A2B11CE5A00407E8D /* HomeView.swift in Sources */,
 				56F942132B140AB500407E8D /* SignUpFields.swift in Sources */,
+				56A33B272B1BE93000C1FADD /* SearchBar.swift in Sources */,
 				56F9421E2B14543600407E8D /* InventoryView.swift in Sources */,
 				56F9421C2B144A8700407E8D /* CardsView.swift in Sources */,
 				56F9420D2B12D1A500407E8D /* SignIn.swift in Sources */,
