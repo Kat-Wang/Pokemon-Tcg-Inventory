@@ -20,49 +20,61 @@ struct CardsView: View {
     var isDarkMode: Bool
     
     var body: some View {
-        
-        ScrollView {
-            VStack {
-                Text("Adding Cards")
-                    .font(Font.custom("Inter-Regular_Light", size: 35))
-                    .multilineTextAlignment(.center)
-                
-                SearchBar(searchField: $searchField, isDarkMode: isDarkMode)
-                
-                HStack {
-                    SupertypeFilterButton(text: "Pokemon", filter: "pokemon", cardFilters: $cardFilters)
-                    SupertypeFilterButton(text: "Trainer", filter: "trainer", cardFilters: $cardFilters)
-                    SupertypeFilterButton(text: "Energy", filter: "energy", cardFilters: $cardFilters)
+        NavigationView {
+            ScrollView {
+                VStack {
+                    Text("Adding Cards")
+                        .font(Font.custom("Inter-Regular_Light", size: 35))
+                        .multilineTextAlignment(.center)
+                    
+                    SearchBar(searchField: $searchField, isDarkMode: isDarkMode)
+                    
+                    HStack {
+                        SupertypeFilterButton(text: "Pokemon", filter: "pokemon", cardFilters: $cardFilters)
+                        SupertypeFilterButton(text: "Trainer", filter: "trainer", cardFilters: $cardFilters)
+                        SupertypeFilterButton(text: "Energy", filter: "energy", cardFilters: $cardFilters)
+                    }
+                    
+                    cardFilters.filters["pokemon"]! ? PokemonSubtypeFilters(cardFilters: $cardFilters) : nil
+                    cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
+                    cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
+                    
+                    LazyVGrid(columns: cardColumns) {
+                        ForEach(cards){card in
+                            CardCell(card: card)
+                        }
+                    }
+                    
+                    Button {
+                        getMoreCards()
+                    } label: {
+                        Text("Load More")
+                    }
+                    
+                }
+                .onChange(of: cardFilters.filters) {
+                    getCards()
+                }
+                .onChange(of: searchField) {
+                    getCards()
                 }
                 
-                cardFilters.filters["pokemon"]! ? PokemonSubtypeFilters(cardFilters: $cardFilters) : nil
-                cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
-                cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
-                
-                LazyVGrid(columns: cardColumns) {
-                    ForEach(cards){card in
-                        CardCell(card: card)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        // Add action for trailing button
+                    }) {
+                        Image(systemName: "gym.bag")
+                            .imageScale(.large)
                     }
                 }
-                
-                Button {
-                    getMoreCards()
-                } label: {
-                    Text("Load More")
-                }
-                
             }
-            .onChange(of: cardFilters.filters) {
-                getCards()
-            }
-            .onChange(of: searchField) {
-                getCards()
-            }
-            
         }
         .alert(item: $alertItem) {alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         }
+
     }
     
     func getCards(){

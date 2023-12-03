@@ -12,7 +12,7 @@ struct DecksView: View {
     var isDarkMode: Bool
     
     var body: some View {
-        
+        Text("hi")
     }
 }
 
