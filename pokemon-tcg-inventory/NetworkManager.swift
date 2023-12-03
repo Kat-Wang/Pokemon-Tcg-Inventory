@@ -24,7 +24,7 @@ final class NetworkManager {
         
     func getCards(for page: Int, with filters: CardFilters, filterText: String?, completed: @escaping (Result<[Card], APError>) -> Void){
         
-        var pageString = "page=\(page)&pageSize=5"
+        let pageString = "page=\(page)&pageSize=6"
         
         var textQueryString = ""
         
@@ -36,8 +36,8 @@ final class NetworkManager {
             }
         }
         
-        if var filterText = filterText, !filterText.isEmpty {
-            var formattedFilterText = filterText.replacingOccurrences(of: " ", with: "%20")
+        if let filterText = filterText, !filterText.isEmpty {
+            let formattedFilterText = filterText.replacingOccurrences(of: " ", with: "%20")
 //            var formattedFilterText = filterText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
             
@@ -54,8 +54,6 @@ final class NetworkManager {
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
         request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
-        
-        print(urlComponents.url)
         
         //if we get good url, we create a network request
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
