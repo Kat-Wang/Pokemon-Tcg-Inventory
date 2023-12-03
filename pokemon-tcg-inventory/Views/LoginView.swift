@@ -12,7 +12,6 @@ import FirebaseAuth
 
 struct LoginView: View {
     @Binding var isLoggedIn: Bool
-    
     @Binding var username: String
     @Binding var password: String
     @Binding var signError: Bool

@@ -14,6 +14,12 @@
 		563E6B912B1C201B0064117A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 563E6B902B1C201B0064117A /* FirebaseFirestoreSwift */; };
 		563E6B942B1C23550064117A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6B932B1C23550064117A /* UserManager.swift */; };
 		563E6B962B1C300B0064117A /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6B952B1C300B0064117A /* FirestoreManager.swift */; };
+		563E6B9A2B1C3B3B0064117A /* CardCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6B992B1C3B3B0064117A /* CardCollectionManager.swift */; };
+		563E6B9C2B1C3B440064117A /* DeckCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6B9B2B1C3B440064117A /* DeckCollectionManager.swift */; };
+		563E6B9E2B1C3B4B0064117A /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6B9D2B1C3B4B0064117A /* Deck.swift */; };
+		563E6BA02B1C3E1D0064117A /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6B9F2B1C3E1D0064117A /* DecksView.swift */; };
+		563E6BA22B1C43860064117A /* DeckCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6BA12B1C43860064117A /* DeckCollection.swift */; };
+		563E6BA42B1C438C0064117A /* CardCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563E6BA32B1C438C0064117A /* CardCollection.swift */; };
 		564835042B1658A00056A84B /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564835032B1658A00056A84B /* FilterButton.swift */; };
 		569C86212B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 569C86202B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf */; };
 		569C86232B181C800072CAB5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C86222B181C800072CAB5 /* NetworkManager.swift */; };
@@ -53,6 +59,12 @@
 /* Begin PBXFileReference section */
 		563E6B932B1C23550064117A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		563E6B952B1C300B0064117A /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		563E6B992B1C3B3B0064117A /* CardCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionManager.swift; sourceTree = "<group>"; };
+		563E6B9B2B1C3B440064117A /* DeckCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionManager.swift; sourceTree = "<group>"; };
+		563E6B9D2B1C3B4B0064117A /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		563E6B9F2B1C3E1D0064117A /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
+		563E6BA12B1C43860064117A /* DeckCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollection.swift; sourceTree = "<group>"; };
+		563E6BA32B1C438C0064117A /* CardCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollection.swift; sourceTree = "<group>"; };
 		564835032B1658A00056A84B /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		569C86202B17FDF30072CAB5 /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
 		569C86222B181C800072CAB5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -114,6 +126,8 @@
 				569C86222B181C800072CAB5 /* NetworkManager.swift */,
 				563E6B932B1C23550064117A /* UserManager.swift */,
 				563E6B952B1C300B0064117A /* FirestoreManager.swift */,
+				563E6B992B1C3B3B0064117A /* CardCollectionManager.swift */,
+				563E6B9B2B1C3B440064117A /* DeckCollectionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -185,6 +199,7 @@
 				56F942192B144A3D00407E8D /* AccountView.swift */,
 				56F9421B2B144A8700407E8D /* CardsView.swift */,
 				56F9421D2B14543600407E8D /* InventoryView.swift */,
+				563E6B9F2B1C3E1D0064117A /* DecksView.swift */,
 				56F9420B2B12D17100407E8D /* Subviews */,
 			);
 			path = Views;
@@ -223,6 +238,9 @@
 				56A0B0802B14ED6F009F9788 /* User.swift */,
 				56A0B0842B155899009F9788 /* CardFilters.swift */,
 				569C86282B1831C90072CAB5 /* Alert.swift */,
+				563E6B9D2B1C3B4B0064117A /* Deck.swift */,
+				563E6BA12B1C43860064117A /* DeckCollection.swift */,
+				563E6BA32B1C438C0064117A /* CardCollection.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -322,6 +340,8 @@
 				56F942132B140AB500407E8D /* SignUpFields.swift in Sources */,
 				56A33B272B1BE93000C1FADD /* SearchBar.swift in Sources */,
 				56F9421E2B14543600407E8D /* InventoryView.swift in Sources */,
+				563E6BA22B1C43860064117A /* DeckCollection.swift in Sources */,
+				563E6B9E2B1C3B4B0064117A /* Deck.swift in Sources */,
 				56F9421C2B144A8700407E8D /* CardsView.swift in Sources */,
 				56F9420D2B12D1A500407E8D /* SignIn.swift in Sources */,
 				569C86292B1831C90072CAB5 /* Alert.swift in Sources */,
@@ -334,8 +354,12 @@
 				56F942162B14291700407E8D /* InvertedBindingBool.swift in Sources */,
 				56F942212B145EFE00407E8D /* Card.swift in Sources */,
 				56F942072B10861000407E8D /* SignUpView.swift in Sources */,
+				563E6BA42B1C438C0064117A /* CardCollection.swift in Sources */,
 				563E6B942B1C23550064117A /* UserManager.swift in Sources */,
+				563E6B9C2B1C3B440064117A /* DeckCollectionManager.swift in Sources */,
 				569C86252B181D110072CAB5 /* APError.swift in Sources */,
+				563E6BA02B1C3E1D0064117A /* DecksView.swift in Sources */,
+				563E6B9A2B1C3B3B0064117A /* CardCollectionManager.swift in Sources */,
 				56A0B0852B155899009F9788 /* CardFilters.swift in Sources */,
 				56F942182B14292000407E8D /* HexColor.swift in Sources */,
 				569C862B2B1847600072CAB5 /* RemoteImage.swift in Sources */,

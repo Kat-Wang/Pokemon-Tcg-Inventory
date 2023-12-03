@@ -39,19 +39,6 @@ struct CardResponse : Decodable {
     let totalCount: Int
 }
 
-//struct CardResponse: Decodable {
-//    let data: [Card]
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case data
-//    }
-//
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        data = try container.decode([Card].self, forKey: .data)
-//    }
-//}
-
 struct MockData {
     static let sampleAbilities = Ability(name: "Fake Ability", text: "This is a fake ability", type: "Ability")
     
