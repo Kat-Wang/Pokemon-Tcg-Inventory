@@ -14,5 +14,5 @@ struct Deck {
 }
 
 struct DeckMockData {
-    static var sampleDeck = Deck(name: "my tesing deck", cards: [MockData.sampleCard,MockData.sampleCard,MockData.sampleCard])
+    static var sampleDeck = Deck(name: "my tesing deck", cards: [MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard])
 }

@@ -11,21 +11,19 @@ struct WorkingInventory: View {
     @Binding var workingInventory: [Card]
     
     var body: some View {
-        HStack {
-            WorkingInventoryCardList(supertype: "Pokemon", workingInventory: $workingInventory)
+        HStack (spacing: 0) {
+            WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $workingInventory)
             WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory)
             WorkingInventoryCardList(supertype: "Energy", workingInventory: $workingInventory)
         }
-        .padding([.leading, .trailing], 0)
+//        .padding([.leading, .trailing], 0)
     }
 }
 
 struct WorkingInventoryCardList: View {
     var supertype: String
     @Binding var workingInventory: [Card]
-    
-    var runningList: [Card] = []
-    
+        
     var body: some View {
         VStack {
             Text(supertype)
@@ -34,22 +32,48 @@ struct WorkingInventoryCardList: View {
                 .multilineTextAlignment(.center)
                 .padding()
             
-            List {
-                ForEach(workingInventory.indices, id: \.self) {i in
-                    HStack {
-                        Image(systemName: "star")
-                            .resizable()
-                            .frame(width: 10, height: 10)
-                        Text(workingInventory[i].name + " " + workingInventory[i].set!.name)
-                            .font(.caption)
+            let filteredCards = workingInventory.filter { $0.supertype == supertype }
+                    let groupedCards = Dictionary(grouping: filteredCards, by: { $0.id })
+
+                    List {
+                        ForEach(groupedCards.keys.sorted(), id: \.self) { cardID in
+                            if let currentCards = groupedCards[cardID] {
+                                let count = currentCards.count
+                                let firstCard = currentCards.first! // Assuming at least one card is present
+
+                                HStack {
+                                    cardCountIcon(count: count)
+
+                                    Text("\(firstCard.name) (\(firstCard.set!.name))")
+                                        .font(.system(size: 10))
+                                }
+                            }
+                        }
                     }
-                }
-            }
-            .listStyle(PlainListStyle())
+                    .padding(-10)
+                    .listStyle(PlainListStyle())
         }
     }
 }
 
 #Preview {
-    WorkingInventory(workingInventory: .constant([MockData.sampleCard,MockData.sampleCard,MockData.sampleCard]))
+    WorkingInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]))
+}
+
+struct cardCountIcon: View {
+    var count: Int
+
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .foregroundColor(Color(hex: "#A0CFD5"))
+                .frame(width: 15, height: 20)
+                .cornerRadius(1)
+            
+            Text("\(count)")
+                .font(.caption)
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+        }
+    }
 }

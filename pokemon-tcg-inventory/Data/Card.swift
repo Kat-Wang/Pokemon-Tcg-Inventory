@@ -53,7 +53,7 @@ struct MockData {
     
     static let sampleSet = Set(id: "000", name: "Sword & Shield", series: "155")
     
-    static let sampleCard = Card(id: "xy1-1",
+    static let samplePokemonCard = Card(id: "xy1-1",
                                  name: "Venusaur-EX",
                                  images: sampleImages,
                                  supertype: "Pokemon",
@@ -63,5 +63,41 @@ struct MockData {
                                  types: ["Grass"],
                                  abilities: [sampleAbilities],
                                  set: sampleSet
+    )
+    
+    static let sampleTrainerCard = Card(id: "ducky",
+                                        name: "Nessa",
+                                        images: sampleImages,
+                                        supertype: "Trainer",
+                                        subtypes: ["Basic", "EX"],
+                                        level: nil,
+                                        hp: "100",
+                                        types: ["Grass"],
+                                        abilities: [sampleAbilities],
+                                        set: sampleSet
+    )
+    
+    static let sampleEnergyCard = Card(id: "abc",
+                                        name: "Fire Energy",
+                                        images: sampleImages,
+                                        supertype: "Energy",
+                                        subtypes: ["Basic", "EX"],
+                                        level: nil,
+                                        hp: "100",
+                                        types: ["Grass"],
+                                        abilities: [sampleAbilities],
+                                        set: sampleSet
+    )
+    
+    static let sampleEnergyCard2 = Card(id: "def",
+                                        name: "Water Energy",
+                                        images: sampleImages,
+                                        supertype: "Energy",
+                                        subtypes: ["Basic", "EX"],
+                                        level: nil,
+                                        hp: "100",
+                                        types: ["Grass"],
+                                        abilities: [sampleAbilities],
+                                        set: sampleSet
     )
 }
