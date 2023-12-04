@@ -40,41 +40,7 @@ struct WorkingCardInventory: View {
     }
 }
 
-struct WorkingInventoryCardList: View {
-    var supertype: String
-    @Binding var workingInventory: [Card]
-        
-    var body: some View {
-        VStack {
-            Text(supertype)
-                .font(Font.custom("Inter-Regular_Light", size: 20))
-                .underline()
-                .multilineTextAlignment(.center)
-                .padding()
-            
-            let filteredCards = workingInventory.filter { $0.supertype == supertype }
-                    let groupedCards = Dictionary(grouping: filteredCards, by: { $0.id })
 
-                    List {
-                        ForEach(groupedCards.keys.sorted(), id: \.self) { cardID in
-                            if let currentCards = groupedCards[cardID] {
-                                let count = currentCards.count
-                                let firstCard = currentCards.first! // Assuming at least one card is present
-
-                                HStack {
-                                    cardCountIcon(count: count)
-
-                                    Text("\(firstCard.name) (\(firstCard.set!.name))")
-                                        .font(.system(size: 10))
-                                }
-                            }
-                        }
-                    }
-                    .padding(-10)
-                    .listStyle(PlainListStyle())
-        }
-    }
-}
 
 #Preview {
     WorkingCardInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), soundEnabled: true)
@@ -82,7 +48,7 @@ struct WorkingInventoryCardList: View {
 
 struct cardCountIcon: View {
     var count: Int
-
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -96,4 +62,90 @@ struct cardCountIcon: View {
                 .multilineTextAlignment(.center)
         }
     }
+}
+
+struct WorkingInventoryCardList: View {
+    var supertype: String
+    @Binding var workingInventory: [Card]
+    
+    var body: some View {
+        VStack {
+            Text(supertype)
+                .font(Font.custom("Inter-Regular_Light", size: 20))
+                .underline()
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            let filteredCards = workingInventory.filter { $0.supertype == supertype }
+            let groupedCards = Dictionary(grouping: filteredCards, by: { $0.id })
+            
+            List {
+                ForEach(groupedCards.keys.sorted(), id: \.self) { cardID in
+                    if let currentCards = groupedCards[cardID] {
+                        let count = currentCards.count
+                        let firstCard = currentCards.first! // Assuming at least one card is present
+                        
+                        HStack {
+                            cardCountIcon(count: count)
+                            
+                            Text("\(firstCard.name) (\(firstCard.set!.name))")
+                                .font(.system(size: 10))
+                        }
+                    }
+                }
+            }
+            .padding(-10)
+            .listStyle(PlainListStyle())
+        }
+    }
+}
+
+struct UserCardInventory: View {
+    @Binding var workingInventory: [Card]
+    @Binding var user: User
+    
+    var soundEnabled: Bool
+    
+    var body: some View {
+        HStack (spacing: 0) {
+            WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $workingInventory)
+            WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory)
+            WorkingInventoryCardList(supertype: "Energy", workingInventory: $workingInventory)
+        }
+    }
+}
+
+struct UserDeckInventory: View {
+    @Binding var workingInventory: [Deck]
+    
+    var body: some View {
+        VStack {
+            Text("Decks")
+                .font(Font.custom("Inter-Regular_Light", size: 20))
+                .underline()
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            let groupedDecks = Dictionary(grouping: workingInventory, by: { $0.name })
+            
+            List {
+                ForEach(groupedDecks.keys.sorted(), id: \.self) { id in
+                    if let currentDecks = groupedDecks[id] {
+                        let count = currentDecks.count
+                        let firstDeck = currentDecks.first!
+                        
+                        HStack {
+                            cardCountIcon(count: count)
+                            
+                            Text("\(firstDeck.name)")
+                                .font(.system(size: 10))
+                        }
+                    }
+                }
+            }
+            .padding(-10)
+            .listStyle(PlainListStyle())
+        }
+    }
+    
 }

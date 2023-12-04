@@ -8,5 +8,5 @@
 import Foundation
 
 struct DeckCollection {
-    let collection: [Deck] = []
+    var collection: [Deck] = []
 }

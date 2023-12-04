@@ -27,7 +27,7 @@ struct HomeView: View {
                     Text("Add")
                 }
             
-            InventoryView()
+            InventoryView(user: $user, soundEnabled: soundEnabled)
                 .tabItem {
                     Image(systemName: "gym.bag.fill")
                     Text("Inventory")

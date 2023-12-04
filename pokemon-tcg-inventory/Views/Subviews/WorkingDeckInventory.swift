@@ -45,6 +45,8 @@ struct WorkingDeckInventory: View {
                 
                 workingDeck.name = deckName
                 
+                user.deckCollection.collection.append(workingDeck)
+                
                 deckName = ""
                 
                 if soundEnabled {AudioServicesPlaySystemSound(1111)}

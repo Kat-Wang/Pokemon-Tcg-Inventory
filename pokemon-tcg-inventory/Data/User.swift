@@ -24,3 +24,4 @@ class User {
 }
 
 var sampleUser = User()
+
