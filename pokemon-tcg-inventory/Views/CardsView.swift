@@ -16,57 +16,83 @@ struct CardsView: View {
     @State var searchField = ""
     @State var cards: [Card] = []
     @State var queryPage = 1
+    @State var displayBagPanel = false
+    @State var displayCard = false
+    @State var selectedCard: Card?
+    @State private var singleTap = false
+    @State var workingInventory: [Card] = []
+    @State var isCardAnimating = false
+    
+    @Binding var user: User
     
     var isDarkMode: Bool
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
-                    Text("Adding Cards")
-                        .font(Font.custom("Inter-Regular_Light", size: 35))
-                        .multilineTextAlignment(.center)
-                    
-                    SearchBar(searchField: $searchField, isDarkMode: isDarkMode)
-                    
-                    HStack {
-                        SupertypeFilterButton(text: "Pokemon", filter: "pokemon", cardFilters: $cardFilters)
-                        SupertypeFilterButton(text: "Trainer", filter: "trainer", cardFilters: $cardFilters)
-                        SupertypeFilterButton(text: "Energy", filter: "energy", cardFilters: $cardFilters)
-                    }
-                    
-                    cardFilters.filters["pokemon"]! ? PokemonSubtypeFilters(cardFilters: $cardFilters) : nil
-                    cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
-                    cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
-                    
-                    LazyVGrid(columns: cardColumns) {
-                        ForEach(cards){card in
-                            CardCell(card: card)
+                ZStack {
+                    VStack {
+                        Text("Adding Cards")
+                            .font(Font.custom("Inter-Regular_Light", size: 35))
+                            .multilineTextAlignment(.center)
+                        
+                        SearchBar(searchField: $searchField, isDarkMode: isDarkMode)
+                        
+                        HStack {
+                            SupertypeFilterButton(text: "Pokemon", filter: "pokemon", cardFilters: $cardFilters)
+                            SupertypeFilterButton(text: "Trainer", filter: "trainer", cardFilters: $cardFilters)
+                            SupertypeFilterButton(text: "Energy", filter: "energy", cardFilters: $cardFilters)
                         }
+                        
+                        cardFilters.filters["pokemon"]! ? PokemonSubtypeFilters(cardFilters: $cardFilters) : nil
+                        cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
+                        cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
+                        
+                        LazyVGrid(columns: cardColumns) {
+                            ForEach(cards){card in
+                                CardCell(card: card)
+                                    .opacity(isCardAnimating ? 0.0 : 1.0)
+                                    .highPriorityGesture(TapGesture(count: 2).onEnded { _ in
+                                        selectedCard = card
+                                        displayCard = true
+                                    })
+                                    .onTapGesture {
+                                        workingInventory.append(card)
+//                                        startAnimationSequence()
+                                    }
+                            }
+                        }
+                        
+                        Button {
+                            getMoreCards()
+                        } label: {
+                            Text("Load More")
+                        }
+                        
+                    }
+                    .onChange(of: cardFilters.filters) {
+                        getCards()
+                    }
+                    .onChange(of: searchField) {
+                        getCards()
                     }
                     
-                    Button {
-                        getMoreCards()
-                    } label: {
-                        Text("Load More")
+                    if displayCard {
+                        CardRemoteImage(urlString: (selectedCard?.images!.large)!)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 360, height: 504)
+                            .onTapGesture {
+                                displayCard = false
+                            }
                     }
-                    
                 }
-                .onChange(of: cardFilters.filters) {
-                    getCards()
-                }
-                .onChange(of: searchField) {
-                    getCards()
-                }
-                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        // Add action for trailing button
-                    }) {
-                        Image(systemName: "gym.bag")
-                            .imageScale(.large)
+                    NavigationLink{
+                        WorkingInventory(workingInventory: $workingInventory)
+                    } label: {
+                        Label("Bag", systemImage: "gym.bag")
                     }
                 }
             }
@@ -74,7 +100,7 @@ struct CardsView: View {
         .alert(item: $alertItem) {alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         }
-
+        
     }
     
     func getCards(){
@@ -123,15 +149,28 @@ struct CardsView: View {
             }
         }
     }
+    
+    func startAnimationSequence() {
+        withAnimation(.easeInOut(duration: 0.5)) {
+            isCardAnimating = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                isCardAnimating = false
+            }
+        }
+    }
 }
 
 #Preview {
-    CardsView(isDarkMode: false)
+    CardsView(user: .constant(sampleUser), isDarkMode: false)
 }
 
 struct CardCell: View {
     
     var card: Card
+    @State private var isAnimating = false
     
     var body: some View {
         HStack {
@@ -139,6 +178,17 @@ struct CardCell: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 168)
                 .cornerRadius(8)
+                .opacity(isAnimating ? 0.0 : 1.0)
+                .onTapGesture {
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        isAnimating.toggle()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        withAnimation(.easeInOut(duration: 1.0)) {
+                            isAnimating.toggle()
+                        }
+                    }
+                }
         }
     }
 }

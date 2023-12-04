@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct CardCollection {
+    var collection: [Card] = []
+}

@@ -17,6 +17,7 @@ struct Card: Decodable, Identifiable {
     let hp: String?
     let types: [String]?
     let abilities: [Ability]?
+    let `set`: Set?
     
 }
 
@@ -29,6 +30,12 @@ struct Ability: Decodable {
 struct Images: Decodable {
     let small: String
     let large: String
+}
+
+struct Set: Decodable {
+    let id: String
+    let name: String
+    let series: String
 }
 
 struct CardResponse : Decodable {
@@ -44,6 +51,8 @@ struct MockData {
     
     static let sampleImages = Images(small: "https://images.pokemontcg.io/xy1/1.png", large: "https://images.pokemontcg.io/xy1/1_hires.png")
     
+    static let sampleSet = Set(id: "000", name: "Sword & Shield", series: "155")
+    
     static let sampleCard = Card(id: "xy1-1",
                                  name: "Venusaur-EX",
                                  images: sampleImages,
@@ -52,5 +61,7 @@ struct MockData {
                                  level: nil,
                                  hp: "100",
                                  types: ["Grass"],
-                                 abilities: [sampleAbilities])
+                                 abilities: [sampleAbilities],
+                                 set: sampleSet
+    )
 }

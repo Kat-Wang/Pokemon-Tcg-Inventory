@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct DeckCollection {
+    let collection: [Deck] = []
+}

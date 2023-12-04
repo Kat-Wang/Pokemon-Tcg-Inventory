@@ -18,7 +18,9 @@ class User {
     var signError = false
     var signingUp = false
     var displayName = "Trainer"
+    
+    var cardCollection = CardCollection()
+    var deckCollection = DeckCollection()
 }
-
 
 var sampleUser = User()
