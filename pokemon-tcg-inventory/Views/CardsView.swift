@@ -68,8 +68,13 @@ struct CardsView: View {
                             getMoreCards()
                         } label: {
                             Text("Load More")
+                                .font(.caption)
                         }
-                        
+                        .padding([.top, .bottom], 10)
+                        .padding([.leading, .trailing], 20)
+                        .background(Color(hex: "#4484b2"))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                     }
                     .onChange(of: cardFilters.filters) {
                         getCards()
@@ -91,7 +96,7 @@ struct CardsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
-                        WorkingInventory(workingInventory: $workingInventory, user: $user)
+                        WorkingCardInventory(workingInventory: $workingInventory, user: $user)
                     } label: {
                         Label("Bag", systemImage: "gym.bag")
                     }
@@ -147,18 +152,6 @@ struct CardsView: View {
                         self.alertItem = AlertContext.unableToComplete
                     }
                 }
-            }
-        }
-    }
-    
-    func startAnimationSequence() {
-        withAnimation(.easeInOut(duration: 0.5)) {
-            isCardAnimating = true
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            withAnimation(.easeInOut(duration: 0.5)) {
-                isCardAnimating = false
             }
         }
     }

@@ -20,7 +20,7 @@ struct HomeView: View {
                     Text("Add")
                 }
             
-            DecksView(isDarkMode: isDarkMode)
+            DecksView(user: $user, isDarkMode: isDarkMode)
                 .tabItem {
                     Image(systemName: "rectangle.stack.fill.badge.plus")
                     Text("Add")

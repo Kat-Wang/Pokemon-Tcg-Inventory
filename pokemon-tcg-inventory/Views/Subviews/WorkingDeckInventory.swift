@@ -7,12 +7,26 @@
 
 import SwiftUI
 
-struct WorkingInventory: View {
+struct WorkingDeckInventory: View {
     @Binding var workingInventory: [Card]
     @Binding var user: User
+    @Binding var deckName: String
     
+    var isDarkMode: Bool
+    
+
     var body: some View {
         VStack {
+            Rectangle()
+                .stroke(Color(isDarkMode ? .white : .black), lineWidth: 1)
+                .frame(width: 280, height: 40)
+                .overlay(
+                    TextField("Deck Name", text: $deckName)
+                        .font(Font.custom("Inter-Regular_Light", size: 15))
+                        .padding([.leading, .trailing], 8)
+                        .autocorrectionDisabled()
+                )
+            
             HStack (spacing: 0) {
                 WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $workingInventory)
                 WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory)
@@ -20,12 +34,18 @@ struct WorkingInventory: View {
             }
             
             Button {
+                var workingDeck = Deck(name: "", cards: [])
+
                 for card in workingInventory {
-                    user.cardCollection.collection.append(card)
+                    workingDeck.cards.append(card)
                 }
                 workingInventory = []
+                
+                workingDeck.name = deckName
+                
+                deckName = ""
             } label: {
-                Text("Save in Inventory")
+                Text("Save Deck")
                     .padding()
                     .background(Color(hex: "#4484b2"))
                     .foregroundColor(.white)
@@ -35,7 +55,7 @@ struct WorkingInventory: View {
     }
 }
 
-struct WorkingInventoryCardList: View {
+struct WorkingDeckCardList: View {
     var supertype: String
     @Binding var workingInventory: [Card]
         
@@ -72,23 +92,5 @@ struct WorkingInventoryCardList: View {
 }
 
 #Preview {
-    WorkingInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser))
-}
-
-struct cardCountIcon: View {
-    var count: Int
-
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(Color(hex: "#A0CFD5"))
-                .frame(width: 15, height: 20)
-                .cornerRadius(1)
-            
-            Text("\(count)")
-                .font(.caption)
-                .foregroundColor(.black)
-                .multilineTextAlignment(.center)
-        }
-    }
+    WorkingDeckInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), deckName: .constant("Potato"), isDarkMode: true)
 }
