@@ -8,11 +8,12 @@
 import Foundation
 
 
-struct Deck {
+struct Deck: Identifiable {
+    var id: UUID
     var name: String
     var cards: [Card]
 }
 
 struct DeckMockData {
-    static var sampleDeck = Deck(name: "my tesing deck", cards: [MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard])
+    static var sampleDeck = Deck(id: UUID(), name: "my tesing deck", cards: [MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard])
 }

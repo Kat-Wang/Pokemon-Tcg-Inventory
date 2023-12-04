@@ -36,7 +36,7 @@ struct WorkingDeckInventory: View {
             }
             
             Button {
-                var workingDeck = Deck(name: "", cards: [])
+                var workingDeck = Deck(id: UUID(), name: "", cards: [])
 
                 for card in workingInventory {
                     workingDeck.cards.append(card)

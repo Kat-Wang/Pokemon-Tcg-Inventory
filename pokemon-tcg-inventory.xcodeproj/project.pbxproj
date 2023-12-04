@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560FF19D2B1E529000AFF852 /* UserWorkingInvetory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FF19C2B1E529000AFF852 /* UserWorkingInvetory.swift */; };
 		563E6B892B1C13A30064117A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 563E6B882B1C13A30064117A /* FirebaseDatabase */; };
 		563E6B8B2B1C13A30064117A /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 563E6B8A2B1C13A30064117A /* FirebaseDatabaseSwift */; };
 		563E6B8D2B1C13AC0064117A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 563E6B8C2B1C13AC0064117A /* FirebaseStorage */; };
@@ -59,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		560FF19C2B1E529000AFF852 /* UserWorkingInvetory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorkingInvetory.swift; sourceTree = "<group>"; };
 		563E6B932B1C23550064117A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		563E6B952B1C300B0064117A /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		563E6B992B1C3B3B0064117A /* CardCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionManager.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				56A33B262B1BE93000C1FADD /* SearchBar.swift */,
 				56C1D5952B1D0A35000DBAB3 /* WorkingCardInventory.swift */,
 				566271A52B1D85AF00CF9ABC /* WorkingDeckInventory.swift */,
+				560FF19C2B1E529000AFF852 /* UserWorkingInvetory.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				569C86232B181C800072CAB5 /* NetworkManager.swift in Sources */,
+				560FF19D2B1E529000AFF852 /* UserWorkingInvetory.swift in Sources */,
 				56F941952B09EC6700407E8D /* LoginView.swift in Sources */,
 				564835042B1658A00056A84B /* FilterButton.swift in Sources */,
 				56F9420A2B11CE5A00407E8D /* HomeView.swift in Sources */,
