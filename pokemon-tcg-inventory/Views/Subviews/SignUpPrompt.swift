@@ -15,6 +15,8 @@ struct SignUpPrompt: View {
     var body: some View {
         HStack{
             Text("Don't have an account?")
+                .font(Font.custom("Inter-Regular_Light", size: 10))
+
             
             Button {
                 username = ""
@@ -22,6 +24,8 @@ struct SignUpPrompt: View {
                 signingUp = true
             } label: {
                 Text("Sign up.")
+                    .font(Font.custom("Inter-Regular_Light", size: 13))
+
             }
         }.font(.caption)
     }

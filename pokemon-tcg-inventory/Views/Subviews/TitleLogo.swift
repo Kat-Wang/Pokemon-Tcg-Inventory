@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TitleLogo: View {
     var body: some View {
-        Text("Pokemon TCG\nInventory App").bold().font(.largeTitle)
+        Text("Pokemon TCG\nInventory App").bold()                            .font(Font.custom("Inter-Regular_Light", size: 35))
+
         
         Image("pip")
             .resizable()

@@ -30,7 +30,7 @@ struct SignUpView: View {
                     confirmPassword = ""
                     signingUp = false
                 } label: {
-                    Image(systemName: "xmark")
+                    Image(systemName: "x.square")
                         .foregroundColor(Color(.label))
                         .imageScale(.large)
                         .frame(width: 44, height: 44)
@@ -40,7 +40,8 @@ struct SignUpView: View {
             
             Group{
                 Text("Create New Account")
-                    .font(.title)
+                    .font(Font.custom("Inter-Regular_Light", size: 28))
+
                 
                 SignupFields(username: $username, password: $password, confirmPassword: $confirmPassword)
                 
@@ -62,6 +63,7 @@ struct SignUpView: View {
                     }
                 } label: {
                     Text("Sign Up")
+                        .font(Font.custom("Inter-Regular_Light", size: 15))
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(Color(hex: "#4484b2"))

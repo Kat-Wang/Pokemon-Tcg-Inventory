@@ -35,8 +35,3 @@ struct InventoryView: View {
     }
     
 }
-//
-//#Preview {
-////    InventoryView(user: .constant(sampleUser))
-//}
-

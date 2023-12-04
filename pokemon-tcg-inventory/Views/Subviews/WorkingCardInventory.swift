@@ -67,6 +67,7 @@ struct cardCountIcon: View {
 struct WorkingInventoryCardList: View {
     var supertype: String
     @Binding var workingInventory: [Card]
+    var editable: Bool = true
     
     var body: some View {
         VStack {
@@ -90,6 +91,19 @@ struct WorkingInventoryCardList: View {
                             
                             Text("\(firstCard.name) (\(firstCard.set!.name))")
                                 .font(.system(size: 10))
+                        }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            if editable {
+                                Button {
+                                    if let index = workingInventory.firstIndex(where: { $0.id == cardID }) {
+                                        workingInventory.remove(at: index)
+                                        
+                                    }
+                                } label: {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
+                            }
                         }
                     }
                 }

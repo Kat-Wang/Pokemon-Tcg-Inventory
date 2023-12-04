@@ -37,6 +37,7 @@ struct SignIn: View {
             }
         } label: {
             Text("Sign In")
+                .font(Font.custom("Inter-Regular_Light", size: 15))
         }
         .padding()
         .buttonStyle(.borderedProminent)

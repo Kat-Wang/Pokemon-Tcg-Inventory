@@ -17,56 +17,12 @@ struct UserCardInventory: View {
     
     var body: some View {
         HStack (spacing: 0) {
-            WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $workingInventory)
-            WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory)
-            WorkingInventoryCardList(supertype: "Energy", workingInventory: $workingInventory)
+            WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $workingInventory, editable: false)
+            WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory, editable: false)
+            WorkingInventoryCardList(supertype: "Energy", workingInventory: $workingInventory, editable: false)
         }
     }
 }
-
-//struct UserDeckInventory: View {
-//    @Binding var workingInventory: [Deck]
-//
-//    @State private var selectedDeck: Deck = Deck(name: "", cards: [])
-//    @State private var isSheetPresented = false
-//
-//    var body: some View {
-//        VStack {
-//            Text("Decks")
-//                .font(Font.custom("Inter-Regular_Light", size: 20))
-//                .underline()
-//                .multilineTextAlignment(.center)
-//                .padding()
-//
-//            let groupedDecks = Dictionary(grouping: workingInventory, by: { $0.name })
-//
-//            List {
-//                ForEach(groupedDecks.keys.sorted(), id: \.self) { id in
-//                    if let currentDecks = groupedDecks[id] {
-//                        let count = currentDecks.count
-//                        let firstDeck = currentDecks.first!
-//
-//
-//                        Button(action: {
-//                            selectedDeck = firstDeck
-//                            isSheetPresented = true
-//                        }) {
-//                            Text("\(firstDeck.name)")
-//                                .font(.system(size: 10))
-//                        }
-//                    }
-//                }
-//            }
-//            .padding(-10)
-//            .listStyle(PlainListStyle())
-//            .sheet(isPresented: $isSheetPresented) {
-//                DeckDetailView(deck: selectedDeck)
-//            }
-//        }
-//    }
-//
-//}
-
 
 struct UserDeckInventory: View {
     @Binding var workingInventory: [Deck]
@@ -128,9 +84,9 @@ struct DeckDetailView: View {
     
     var body: some View {
         HStack {
-            WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $deckCards)
-            WorkingInventoryCardList(supertype: "Trainer", workingInventory: $deckCards)
-            WorkingInventoryCardList(supertype: "Energy", workingInventory: $deckCards)
+            WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $deckCards, editable: false)
+            WorkingInventoryCardList(supertype: "Trainer", workingInventory: $deckCards, editable: false)
+            WorkingInventoryCardList(supertype: "Energy", workingInventory: $deckCards, editable: false)
         }
     }
 }
