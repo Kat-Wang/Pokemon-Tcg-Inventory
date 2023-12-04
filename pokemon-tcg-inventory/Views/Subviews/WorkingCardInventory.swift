@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct WorkingCardInventory: View {
     @Binding var workingInventory: [Card]
     @Binding var user: User
+    
+    var soundEnabled: Bool
     
     var body: some View {
         VStack {
@@ -24,6 +27,8 @@ struct WorkingCardInventory: View {
                     user.cardCollection.collection.append(card)
                 }
                 workingInventory = []
+                
+                if soundEnabled{AudioServicesPlaySystemSound(1111)}
             } label: {
                 Text("Save in Inventory")
                     .padding()
@@ -72,7 +77,7 @@ struct WorkingInventoryCardList: View {
 }
 
 #Preview {
-    WorkingCardInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser))
+    WorkingCardInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), soundEnabled: true)
 }
 
 struct cardCountIcon: View {

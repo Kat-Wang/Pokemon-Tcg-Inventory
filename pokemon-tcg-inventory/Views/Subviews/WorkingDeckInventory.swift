@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct WorkingDeckInventory: View {
     @Binding var workingInventory: [Card]
@@ -13,6 +14,7 @@ struct WorkingDeckInventory: View {
     @Binding var deckName: String
     
     var isDarkMode: Bool
+    var soundEnabled: Bool
     
 
     var body: some View {
@@ -44,6 +46,8 @@ struct WorkingDeckInventory: View {
                 workingDeck.name = deckName
                 
                 deckName = ""
+                
+                if soundEnabled {AudioServicesPlaySystemSound(1111)}
             } label: {
                 Text("Save Deck")
                     .padding()
@@ -92,5 +96,5 @@ struct WorkingDeckCardList: View {
 }
 
 #Preview {
-    WorkingDeckInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), deckName: .constant("Potato"), isDarkMode: true)
+    WorkingDeckInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), deckName: .constant("Potato"), isDarkMode: true, soundEnabled: true)
 }

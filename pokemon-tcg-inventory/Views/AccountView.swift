@@ -10,6 +10,7 @@ import SwiftUI
 struct AccountView: View {
     @Binding var user: User
     @Binding var isDarkMode: Bool
+    @Binding var soundEnabled: Bool
     
     var body: some View {
         NavigationView {
@@ -25,14 +26,17 @@ struct AccountView: View {
                 Section(header: Text("Preferences")){
                     Toggle("Dark Mode", isOn: $isDarkMode)
                 }
+                
+                    Toggle("Sound On/Off", isOn: $soundEnabled)
+                }
             }
             .navigationTitle("Account")
         }
     }
     
-}
+
 
 #Preview {
-    AccountView(user: .constant(sampleUser), isDarkMode: .constant(false))
+    AccountView(user: .constant(sampleUser), isDarkMode: .constant(false), soundEnabled: .constant(true))
 }
 

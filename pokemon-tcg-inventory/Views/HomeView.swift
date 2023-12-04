@@ -11,16 +11,17 @@ struct HomeView: View {
     
     @State var user = User()
     @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("soundEnabled") private var soundEnabled = true
 
     var body: some View {
         TabView {
-            CardsView(user: $user, isDarkMode: isDarkMode)
+            CardsView(user: $user, isDarkMode: isDarkMode, soundEnabled: soundEnabled)
                 .tabItem {
                     Image(systemName: "plus.rectangle.portrait")
                     Text("Add")
                 }
             
-            DecksView(user: $user, isDarkMode: isDarkMode)
+            DecksView(user: $user, isDarkMode: isDarkMode, soundEnabled: soundEnabled)
                 .tabItem {
                     Image(systemName: "rectangle.stack.fill.badge.plus")
                     Text("Add")
@@ -32,7 +33,7 @@ struct HomeView: View {
                     Text("Inventory")
                 }
             
-            AccountView(user: $user, isDarkMode: $isDarkMode)
+            AccountView(user: $user, isDarkMode: $isDarkMode, soundEnabled: $soundEnabled)
                 .tabItem {
                     Image(systemName: "person.crop.square")
                     Text("Account")

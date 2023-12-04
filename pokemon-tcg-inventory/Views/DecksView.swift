@@ -25,6 +25,7 @@ struct DecksView: View {
     @Binding var user: User
     
     var isDarkMode: Bool
+    var soundEnabled: Bool
     
     var body: some View {
         NavigationView {
@@ -93,7 +94,7 @@ struct DecksView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
-                        WorkingDeckInventory(workingInventory: $workingInventory, user: $user, deckName: $deckName, isDarkMode: isDarkMode)
+                        WorkingDeckInventory(workingInventory: $workingInventory, user: $user, deckName: $deckName, isDarkMode: isDarkMode, soundEnabled: soundEnabled)
                     } label: {
                         Label("Bag", systemImage: "gym.bag")
                     }
@@ -154,5 +155,5 @@ struct DecksView: View {
 }
 
 #Preview {
-    DecksView(user: .constant(sampleUser), isDarkMode: false)
+    DecksView(user: .constant(sampleUser), isDarkMode: false, soundEnabled: true)
 }

@@ -26,6 +26,7 @@ struct CardsView: View {
     @Binding var user: User
     
     var isDarkMode: Bool
+    var soundEnabled: Bool
     
     var body: some View {
         NavigationView {
@@ -96,7 +97,7 @@ struct CardsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
-                        WorkingCardInventory(workingInventory: $workingInventory, user: $user)
+                        WorkingCardInventory(workingInventory: $workingInventory, user: $user, soundEnabled: soundEnabled)
                     } label: {
                         Label("Bag", systemImage: "gym.bag")
                     }
@@ -158,7 +159,7 @@ struct CardsView: View {
 }
 
 #Preview {
-    CardsView(user: .constant(sampleUser), isDarkMode: false)
+    CardsView(user: .constant(sampleUser), isDarkMode: false, soundEnabled: true)
 }
 
 struct CardCell: View {
