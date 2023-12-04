@@ -9,14 +9,29 @@ import SwiftUI
 
 struct WorkingInventory: View {
     @Binding var workingInventory: [Card]
+    @Binding var user: User
     
     var body: some View {
-        HStack (spacing: 0) {
-            WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $workingInventory)
-            WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory)
-            WorkingInventoryCardList(supertype: "Energy", workingInventory: $workingInventory)
+        VStack {
+            HStack (spacing: 0) {
+                WorkingInventoryCardList(supertype: "Pok\u{00E9}mon", workingInventory: $workingInventory)
+                WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory)
+                WorkingInventoryCardList(supertype: "Energy", workingInventory: $workingInventory)
+            }
+            
+            Button {
+                for card in workingInventory {
+                    user.cardCollection.collection.append(card)
+                }
+                workingInventory = []
+            } label: {
+                Text("Save in Inventory")
+                    .padding()
+                    .background(Color(hex: "#4484b2"))
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+            }
         }
-//        .padding([.leading, .trailing], 0)
     }
 }
 
@@ -57,7 +72,7 @@ struct WorkingInventoryCardList: View {
 }
 
 #Preview {
-    WorkingInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]))
+    WorkingInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser))
 }
 
 struct cardCountIcon: View {

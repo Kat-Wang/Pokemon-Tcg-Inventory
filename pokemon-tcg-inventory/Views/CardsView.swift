@@ -91,7 +91,7 @@ struct CardsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
-                        WorkingInventory(workingInventory: $workingInventory)
+                        WorkingInventory(workingInventory: $workingInventory, user: $user)
                     } label: {
                         Label("Bag", systemImage: "gym.bag")
                     }
