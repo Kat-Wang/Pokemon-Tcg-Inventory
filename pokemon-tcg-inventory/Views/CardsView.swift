@@ -56,10 +56,11 @@ struct CardsView: View {
                                         selectedCard = card
                                         displayCard = true
                                     })
-                                    .onTapGesture {
-                                        workingInventory.append(card)
-//                                        startAnimationSequence()
-                                    }
+                                    .simultaneousGesture(
+                                        TapGesture(count: 1).onEnded {
+                                            workingInventory.append(card)
+                                        }
+                                    )
                             }
                         }
                         
@@ -180,11 +181,11 @@ struct CardCell: View {
                 .cornerRadius(8)
                 .opacity(isAnimating ? 0.0 : 1.0)
                 .onTapGesture {
-                    withAnimation(.easeInOut(duration: 1.0)) {
+                    withAnimation(.easeInOut(duration: 0.1)) {
                         isAnimating.toggle()
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        withAnimation(.easeInOut(duration: 1.0)) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation(.easeInOut(duration: 0.1)) {
                             isAnimating.toggle()
                         }
                     }

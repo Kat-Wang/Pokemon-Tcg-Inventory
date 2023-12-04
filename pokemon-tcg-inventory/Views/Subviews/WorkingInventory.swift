@@ -12,38 +12,44 @@ struct WorkingInventory: View {
     
     var body: some View {
         HStack {
-            Text("Pokemon")
-                .font(Font.custom("Inter-Regular_Light", size: 20))
-                .underline()
-                .multilineTextAlignment(.leading)
-                .padding()
-            Text("Trainers")
-                .font(Font.custom("Inter-Regular_Light", size: 20))
-                .underline()
-                .multilineTextAlignment(.center)
-                .padding()
-            Text("Energies")
-                .font(Font.custom("Inter-Regular_Light", size: 20))
-                .underline()
-                .multilineTextAlignment(.trailing)
-                .padding()
+            WorkingInventoryCardList(supertype: "Pokemon", workingInventory: $workingInventory)
+            WorkingInventoryCardList(supertype: "Trainer", workingInventory: $workingInventory)
+            WorkingInventoryCardList(supertype: "Energy", workingInventory: $workingInventory)
         }
-        
-        
-        HStack {
-            WorkingInventoryCardList(workingInventory: $workingInventory)
-        }
+        .padding([.leading, .trailing], 0)
     }
 }
 
 struct WorkingInventoryCardList: View {
+    var supertype: String
     @Binding var workingInventory: [Card]
     
+    var runningList: [Card] = []
+    
     var body: some View {
-        List {
-            ForEach(workingInventory) {card in
-                Text(card.name)
+        VStack {
+            Text(supertype)
+                .font(Font.custom("Inter-Regular_Light", size: 20))
+                .underline()
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            List {
+                ForEach(workingInventory.indices, id: \.self) {i in
+                    HStack {
+                        Image(systemName: "star")
+                            .resizable()
+                            .frame(width: 10, height: 10)
+                        Text(workingInventory[i].name + " " + workingInventory[i].set!.name)
+                            .font(.caption)
+                    }
+                }
             }
+            .listStyle(PlainListStyle())
         }
     }
+}
+
+#Preview {
+    WorkingInventory(workingInventory: .constant([MockData.sampleCard,MockData.sampleCard,MockData.sampleCard]))
 }
