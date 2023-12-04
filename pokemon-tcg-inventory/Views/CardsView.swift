@@ -22,6 +22,8 @@ struct CardsView: View {
     @State private var singleTap = false
     @State var workingInventory: [Card] = []
     @State var isCardAnimating = false
+    @State private var cardPosition: CGRect = .zero
+    
     
     @Binding var user: User
     
@@ -62,6 +64,11 @@ struct CardsView: View {
                                             workingInventory.append(card)
                                         }
                                     )
+                                    .background(
+                                        GeometryReader { geo in
+                                            Color.clear.preference(key: ViewOffsetKey.self, value: geo.frame(in: .global))
+                                        }
+                                    )
                             }
                         }
                         
@@ -83,17 +90,30 @@ struct CardsView: View {
                     .onChange(of: searchField) {
                         getCards()
                     }
-                    
-                    if displayCard {
-                        CardRemoteImage(urlString: (selectedCard?.images!.large)!)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 360, height: 504)
-                            .onTapGesture {
-                                displayCard = false
-                            }
-                    }
                 }
             }
+            .overlay(
+                displayCard ?
+                VStack {
+                    CardRemoteImage(urlString: (selectedCard?.images!.large)!)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 360, height: 504)
+                        .position(
+                            x: cardPosition.midX + 360/2 + 5,
+                            y: cardPosition.midY + 504/2 + 100
+                        )
+                        .onTapGesture {
+                            displayCard = false
+                        }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black.opacity(0.5))
+                .ignoresSafeArea()
+                : nil
+            )
+            .onPreferenceChange(ViewOffsetKey.self) { value in
+                        cardPosition = value
+                    }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
@@ -188,3 +208,10 @@ struct CardCell: View {
     }
 }
 
+struct ViewOffsetKey: PreferenceKey {
+    static var defaultValue: CGRect = .zero
+    
+    static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
+        value = nextValue()
+    }
+}
