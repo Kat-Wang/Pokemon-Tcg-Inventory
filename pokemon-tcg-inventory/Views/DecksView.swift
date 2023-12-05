@@ -46,22 +46,9 @@ struct DecksView: View {
                     cardFilters.filters["pokemon"]! ? PokemonSubtypeFilters(cardFilters: $cardFilters) : nil
                     cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
                     cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
-                    
-                    LazyVGrid(columns: cardColumns) {
-                        ForEach(cards){card in
-                            CardCell(card: card)
-                                .opacity(isCardAnimating ? 0.0 : 1.0)
-                                .highPriorityGesture(TapGesture(count: 2).onEnded { _ in
-                                    selectedCard = card
-                                    displayCard = true
-                                })
-                                .simultaneousGesture(
-                                    TapGesture(count: 1).onEnded {
-                                        workingInventory.append(card)
-                                    }
-                                )
-                        }
-                    }
+
+                    CardGrid(cards: cards, isCardAnimating: isCardAnimating, selectedCard: $selectedCard, displayCard: $displayCard, workingInventory: $workingInventory)
+
                     
                     Button {
                         getMoreCards()

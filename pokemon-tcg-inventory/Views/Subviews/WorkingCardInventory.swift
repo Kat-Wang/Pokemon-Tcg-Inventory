@@ -26,9 +26,13 @@ struct WorkingCardInventory: View {
                 for card in workingInventory {
                     user.cardCollection.collection.append(card)
                 }
+                
                 workingInventory = []
                 
-                if soundEnabled{AudioServicesPlaySystemSound(1111)}
+                if soundEnabled{
+                    AudioServicesPlaySystemSound(1111)
+                }
+                                
             } label: {
                 Text("Save in Inventory")
                     .padding()
@@ -40,11 +44,11 @@ struct WorkingCardInventory: View {
     }
 }
 
-
-
-#Preview {
-    WorkingCardInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), soundEnabled: true)
-}
+//
+//
+//#Preview {
+//    WorkingCardInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), isDetailViewPresented: .constant(false), soundEnabled: true)
+//}
 
 struct cardCountIcon: View {
     var count: Int

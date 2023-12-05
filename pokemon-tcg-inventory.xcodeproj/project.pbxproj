@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		560FF19D2B1E529000AFF852 /* UserWorkingInvetory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FF19C2B1E529000AFF852 /* UserWorkingInvetory.swift */; };
+		560FF19F2B1E9EF400AFF852 /* CardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FF19E2B1E9EF400AFF852 /* CardGrid.swift */; };
 		563E6B892B1C13A30064117A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 563E6B882B1C13A30064117A /* FirebaseDatabase */; };
 		563E6B8B2B1C13A30064117A /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 563E6B8A2B1C13A30064117A /* FirebaseDatabaseSwift */; };
 		563E6B8D2B1C13AC0064117A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 563E6B8C2B1C13AC0064117A /* FirebaseStorage */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		560FF19C2B1E529000AFF852 /* UserWorkingInvetory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorkingInvetory.swift; sourceTree = "<group>"; };
+		560FF19E2B1E9EF400AFF852 /* CardGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGrid.swift; sourceTree = "<group>"; };
 		563E6B932B1C23550064117A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		563E6B952B1C300B0064117A /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		563E6B992B1C3B3B0064117A /* CardCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionManager.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				56C1D5952B1D0A35000DBAB3 /* WorkingCardInventory.swift */,
 				566271A52B1D85AF00CF9ABC /* WorkingDeckInventory.swift */,
 				560FF19C2B1E529000AFF852 /* UserWorkingInvetory.swift */,
+				560FF19E2B1E9EF400AFF852 /* CardGrid.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				56F941952B09EC6700407E8D /* LoginView.swift in Sources */,
 				564835042B1658A00056A84B /* FilterButton.swift in Sources */,
 				56F9420A2B11CE5A00407E8D /* HomeView.swift in Sources */,
+				560FF19F2B1E9EF400AFF852 /* CardGrid.swift in Sources */,
 				56F942132B140AB500407E8D /* SignUpFields.swift in Sources */,
 				56A33B272B1BE93000C1FADD /* SearchBar.swift in Sources */,
 				56F9421E2B14543600407E8D /* InventoryView.swift in Sources */,

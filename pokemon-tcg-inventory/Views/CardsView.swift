@@ -51,26 +51,7 @@ struct CardsView: View {
                         cardFilters.filters["trainer"]! ? TrainerSubtypeFilters(cardFilters: $cardFilters) : nil
                         cardFilters.filters["energy"]! ? EnergySubtypeFilters(cardFilters: $cardFilters) : nil
                         
-                        LazyVGrid(columns: cardColumns) {
-                            ForEach(cards){card in
-                                CardCell(card: card)
-                                    .opacity(isCardAnimating ? 0.0 : 1.0)
-                                    .highPriorityGesture(TapGesture(count: 2).onEnded { _ in
-                                        selectedCard = card
-                                        displayCard = true
-                                    })
-                                    .simultaneousGesture(
-                                        TapGesture(count: 1).onEnded {
-                                            workingInventory.append(card)
-                                        }
-                                    )
-                                    .background(
-                                        GeometryReader { geo in
-                                            Color.clear.preference(key: ViewOffsetKey.self, value: geo.frame(in: .global))
-                                        }
-                                    )
-                            }
-                        }
+                        CardGrid(cards: cards, isCardAnimating: isCardAnimating, selectedCard: $selectedCard, displayCard: $displayCard, workingInventory: $workingInventory)
                         
                         Button {
                             getMoreCards()
@@ -92,6 +73,8 @@ struct CardsView: View {
                     }
                 }
             }
+            .disabled(displayCard)
+            .blur(radius: displayCard ? 20 : 0)
             .overlay(
                 displayCard ?
                 VStack {
@@ -182,31 +165,6 @@ struct CardsView: View {
     CardsView(user: .constant(sampleUser), isDarkMode: false, soundEnabled: true)
 }
 
-struct CardCell: View {
-    
-    var card: Card
-    @State private var isAnimating = false
-    
-    var body: some View {
-        HStack {
-            CardRemoteImage(urlString: card.images!.large)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 120, height: 168)
-                .cornerRadius(8)
-                .opacity(isAnimating ? 0.0 : 1.0)
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isAnimating.toggle()
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation(.easeInOut(duration: 0.1)) {
-                            isAnimating.toggle()
-                        }
-                    }
-                }
-        }
-    }
-}
 
 struct ViewOffsetKey: PreferenceKey {
     static var defaultValue: CGRect = .zero
