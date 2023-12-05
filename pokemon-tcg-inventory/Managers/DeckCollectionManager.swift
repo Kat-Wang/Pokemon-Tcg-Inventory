@@ -5,6 +5,8 @@
 //  Created by Kate Wang on 12/2/23.
 //
 
+//FILE NOT IN USE; IN PLACE FOR FUTURE UPDATES ON THE APP//
+
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore

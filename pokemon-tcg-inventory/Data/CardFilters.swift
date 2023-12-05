@@ -36,7 +36,6 @@ class CardFilters {
     
     var formatFilters = ["standard", "expanded", "unlimited"]
     var formatFilterNames = ["Standard", "Expanded", "Unlimited"]
-    
 
     var filters = [
         "pokemon": false,
@@ -153,5 +152,4 @@ class CardFilters {
         "expanded": "subtypes:expanded",
         "unlimited": "subtypesunlimited"
     ]
-
 }

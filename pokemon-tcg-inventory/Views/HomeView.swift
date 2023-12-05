@@ -38,7 +38,6 @@ struct HomeView: View {
                     Image(systemName: "person.crop.square")
                     Text("Account")
                 }
-            
         }
         .fullScreenCover(isPresented: !$user.isLoggedIn){
             LoginView(isLoggedIn: $user.isLoggedIn, username: $user.username, password: $user.password, signError: $user.signError, signingUp: $user.signingUp)

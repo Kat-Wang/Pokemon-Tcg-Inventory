@@ -25,9 +25,10 @@ struct SignUpPrompt: View {
             } label: {
                 Text("Sign up.")
                     .font(Font.custom("Inter-Regular_Light", size: 13))
-
             }
-        }.font(.caption)
+            
+        }
+        .font(.caption)
     }
 }
 

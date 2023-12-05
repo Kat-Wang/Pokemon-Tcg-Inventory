@@ -32,7 +32,7 @@ struct WorkingCardInventory: View {
                 if soundEnabled{
                     AudioServicesPlaySystemSound(1111)
                 }
-                                
+                
             } label: {
                 Text("Save in Inventory")
                     .padding()
@@ -43,12 +43,6 @@ struct WorkingCardInventory: View {
         }
     }
 }
-
-//
-//
-//#Preview {
-//    WorkingCardInventory(workingInventory: .constant([MockData.samplePokemonCard,MockData.samplePokemonCard,MockData.samplePokemonCard, MockData.sampleEnergyCard, MockData.sampleEnergyCard, MockData.sampleTrainerCard, MockData.sampleTrainerCard, MockData.sampleEnergyCard2]), user: .constant(sampleUser), isDetailViewPresented: .constant(false), soundEnabled: true)
-//}
 
 struct cardCountIcon: View {
     var count: Int

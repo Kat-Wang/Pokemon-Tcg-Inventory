@@ -24,7 +24,6 @@ struct CardsView: View {
     @State var isCardAnimating = false
     @State private var cardPosition: CGRect = .zero
     
-    
     @Binding var user: User
     
     var isDarkMode: Bool

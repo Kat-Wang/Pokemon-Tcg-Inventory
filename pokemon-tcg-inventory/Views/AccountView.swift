@@ -25,16 +25,24 @@ struct AccountView: View {
                 
                 Section(header: Text("Preferences").font(Font.custom("Inter-Regular_Light", size: 12))){
                     Toggle("Dark Mode", isOn: $isDarkMode).font(Font.custom("Inter-Regular_Light", size: 16))
-                }
-                
+                    
                     Toggle("Sound On/Off", isOn: $soundEnabled).font(Font.custom("Inter-Regular_Light", size: 16))
                 }
+                
+                Section(header: Text("Preferences").font(Font.custom("Inter-Regular_Light", size: 12))){
+                    Button {
+                        user.isLoggedIn = false
+                        user.username = ""
+                        user.password = ""
+                    } label: {
+                        Text("Log Out").font(Font.custom("Inter-Regular_Light", size: 16))
+                    }
+                }
             }
-            .navigationTitle("Account")
         }
+        .navigationTitle(Text("Account/Settings"))
     }
-    
-
+}
 
 #Preview {
     AccountView(user: .constant(sampleUser), isDarkMode: .constant(false), soundEnabled: .constant(true))

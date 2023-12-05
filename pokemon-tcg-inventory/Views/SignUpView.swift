@@ -82,7 +82,6 @@ struct SignUpView: View {
     }
 }
 
-
 #Preview {
     SignUpView(username: .constant("kate@gmail.com"), password: .constant("123123"), signError: .constant(true), signingUp: .constant(true), isLoggedIn: .constant(false))
 }

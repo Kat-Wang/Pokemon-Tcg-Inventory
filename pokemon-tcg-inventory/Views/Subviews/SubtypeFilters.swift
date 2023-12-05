@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PokemonSubtypeFilters: View {
-
+    
     @Binding var cardFilters: CardFilters
     
     @State var pokemonSubtypeSegCtl = 0
@@ -37,7 +37,7 @@ struct PokemonSubtypeFilters: View {
                 )
                 .frame(width: 350, height: 150)
         }
-        }
+    }
     
     @ViewBuilder
     var segCtrlfilterButtonGrid: some View {
@@ -60,7 +60,7 @@ struct PokemonSubtypeFilters: View {
 struct TrainerSubtypeFilters: View {
     
     @Binding var cardFilters: CardFilters
-
+    
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .foregroundColor(.white)

@@ -22,7 +22,7 @@ struct CardCell: View {
                 .opacity(isAnimating ? 0.0 : 1.0)
                 .onTapGesture {
                     workingInventory.append(card)
-
+                    
                     withAnimation(.easeInOut(duration: 0.1)) {
                         isAnimating.toggle()
                     }
