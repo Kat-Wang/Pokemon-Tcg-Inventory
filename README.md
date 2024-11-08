@@ -4,3 +4,6 @@ SwiftUI app to help users keep track of all the pokemon trading cards they own. 
 
 
 Uses [Pokemon TCG API](https://pokemontcg.io/) for fetching cards. Uses Firebase for user authentication.
+
+
+[Video walkthrough](youtu.be/EpAmNuOheko)
